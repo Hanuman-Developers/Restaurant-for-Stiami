@@ -1,35 +1,135 @@
 .app__menuitem {
-    width: 100%;
-    margin: 1rem 0;
+  width: 100%;
+  margin: 1rem 0;
 
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .app__menuitem-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .app__menuitem-sub {
-    width: 100%;
-    margin-top: 0.2rem;
+  width: 100%;
+  margin-top: 0.2rem;
 }
 
 .app__menuitem-name {
-    flex: 1;
+  flex: 1;
 }
 
 .app__menuitem-dash {
-    width: 90px;
-    height: 1px;
-    background: var(--color-golden);
-    margin: 0 1rem;
+  width: 90px;
+  height: 1px;
+  background: var(--color-golden);
+  margin: 0 1rem;
 }
 
 .app__menuitem-price {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.button__add_cart {
+  border-radius: 1rem;
+  font-family: "Courier New", Courier, monospace;
+  margin-left: 1rem;
+  padding: 2rem;
+}
+
+.cart_container {
+  /*min-width: 150px;*/
+  display: flex;
+  flex-wrap: row wrap;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.cart_container p {
+  padding: 1rem;
+  color: white;
+  font-size: 1.2rem;
+}
+
+/*  New CSS */
+
+.salad-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 11px;
+  background-color: var(--menu-card-bg);
+  border-radius: 34px;
+  box-shadow: 0px 6px 16px rgba(43, 8, 37, 0.1);
+  width: 100%;
+  height: 100%;
+  padding: 18px 32px;
+  transition: all 0.3s ease-in-out;
+  animation: 1s ease-in-out 0s 1 slideInFromTopMenu;
+  color: var(--color-golden);
+}
+
+.salad-card:hover {
+  transform: translateY(-4px);
+  background-color: var(--menu-card-hover-bg);
+  filter: brightness(1.01);
+}
+
+.salad-card-image {
+  width: 65%;
+  height: auto;
+  align-self: center;
+  transition: all 0.3s ease-in-out;
+  filter: var(--image-drop-shadow);
+}
+
+.salad-card:hover .salad-card-image {
+  transform: translateY(-3px);
+}
+
+.salad-card-ingredients {
+  font-size: 0.9rem;
+}
+
+.salad-card-price {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.salad-card-add-to-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-golden);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  align-self: center;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0.5rem 1rem rgba(143, 142, 142, 0.15);
+}
+
+.salad-card-add-to-cart:hover {
+  cursor: pointer;
+  transform: scale(1.07);
+  background-color: var(--color-golden-hover);
+}
+
+.salad-card-add-to-cart:active {
+  transition: all 0.1s ease-in-out;
+  transform: scale(0.99);
+}
+
+.salad-card-plus-icon {
+  transition: all 0.24s ease-in-out;
+  width: 60%;
+  height: 60%;
+}
+
+.salad-card-add-to-cart:hover .salad-card-plus-icon {
+  transform: rotate(90deg);
 }
