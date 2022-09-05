@@ -1,0 +1,22 @@
+{
+	"name": "tablebooking",
+	"version": "1.0.0",
+	"main": "server.js",
+	"author": "vivek",
+	"license": "MIT",
+	"type": "module",
+	"scripts": {
+		"start": "node server",
+		"server": "nodemon server",
+		"data:import": "node seeder",
+		"data:destroy": "node seeder -d"
+	},
+	"dependencies": {
+		"colors": "^1.4.0",
+		"dotenv": "^16.0.2",
+		"express": "^4.18.1",
+		"express-async-handler": "^1.2.0",
+		"mongoose": "^6.5.4",
+		"nodemon": "^2.0.19"
+	}
+}
