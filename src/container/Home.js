@@ -13,7 +13,7 @@ function Home() {
   return (
     <div>
       <Navbar />
-      <Header />
+      {/* <Header />
       <AboutUs />
       <Menu />
       <Chef />
@@ -21,7 +21,7 @@ function Home() {
       <Laurels />
       <Gallery />
       <FindUs />
-      <Footer />
+      <Footer />  */}
     </div>
   );
 }
