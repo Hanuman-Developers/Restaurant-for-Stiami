@@ -3,8 +3,10 @@ import VerticalNav from "../../components/VerticalNav/VerticalNav";
 import "./Product.css";
 import { CartState } from "../../context/cartItem_context";
 import FoodItem from "../../components/FoodItem/FoodItem";
+import { useLocation, useNavigate } from "react-router-dom";
 function Product() {
   const { cart, total, clearCart } = CartState();
+  const history = useNavigate();
 
   return (
     <>
@@ -13,7 +15,13 @@ function Product() {
 
         <div className="edit-grid-override">
           <h2>Products</h2>
-          <button>Add item</button>
+          <button
+            onClick={() => {
+              history("/additem");
+            }}
+          >
+            Add item
+          </button>
           {/* <div className="app__specialMenu_menu_items"> */}
           {cart.map((wine) => (
             <FoodItem

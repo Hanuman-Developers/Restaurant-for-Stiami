@@ -35,12 +35,10 @@ const Navbar = () => {
             Products
           </NavLink>
         </li>
-        <li className="p__opensans">
+        {/* <li className="p__opensans">
           <a href="#menu">Menu</a>
-        </li>
-        <li className="p__opensans">
-          <a href="#awards">Awards</a>
-        </li>
+        </li> */}
+        {/* <li className="p__opensans"><a href="#awards">Awards</a></li> */}
         <li className="p__opensans">
           <a
             href="#contact"
@@ -48,21 +46,8 @@ const Navbar = () => {
               history("/menu");
             }}
           >
-            Contact
+            Orders
           </a>
-        </li>
-        <li>
-          <ShoppingCartOutlinedIcon
-            sx={{
-              border: "1px white",
-              color: "white",
-              margin: "0 0 0 1rem",
-            }}
-            onClick={redirect}
-          />
-          <div className="amount-container">
-            <p className="total-amount">{amount}</p>
-          </div>
         </li>
       </ul>
 

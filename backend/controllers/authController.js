@@ -88,9 +88,13 @@ const loginSuccess = asyncHandler(async (req, res) => {
 });
 
 const logOut = asyncHandler(async (req, res) => {
+  console.log("Before logout");
   console.log(req.user);
   req.logout();
   // res.redirect(process.env.CLIENT_URL);
+  console.log("After Logout");
+  console.log(req.user);
+  res.send("Done");
 });
 
 export { handleLogin, loginFailed, loginSuccess, logOut };

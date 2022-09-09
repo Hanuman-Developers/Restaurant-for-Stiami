@@ -18,7 +18,7 @@ const Navbar = () => {
     history("/cart");
   };
   const logout = async () => {
-    setAuth("");
+    setAuth({});
     // window.open("http://localhost:5000/api/auth/logout", "_self");
     fetch("http://localhost:5000/api/auth/logout", {
       method: "GET",
@@ -108,12 +108,18 @@ const Navbar = () => {
         </li>
       </ul>
       <div className="app__navbar-login">
-        {auth ? (
+        {auth.length > 0 ? (
           <a href="#login" className="p__opensans" onClick={logout}>
             Log Out
           </a>
         ) : (
-          <a href="#login" className="p__opensans">
+          <a
+            href=""
+            className="p__opensans"
+            onClick={() => {
+              history("/login");
+            }}
+          >
             Log In / Registration
           </a>
         )}
