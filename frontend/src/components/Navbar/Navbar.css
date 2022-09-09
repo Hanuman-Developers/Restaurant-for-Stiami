@@ -3,6 +3,7 @@
   position: sticky;
   top: 0rem;
   display: flex;
+
   justify-content: space-between;
   align-items: center;
   background: var(--color-black);
@@ -102,6 +103,45 @@
 
 .app__navbar-smallscreen_links li:hover {
   color: var(--color-white);
+}
+
+.cart__nav {
+  display: flex;
+  position: relative;
+}
+.amount__container {
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background-color: white;
+  position: absolute;
+  top: -0.5rem;
+  right: -0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.total__amount {
+  margin: 0.01rem auto;
+  color: black;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.amount-container {
+  position: absolute;
+  top: -0.85rem;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  background: var(--clr-primary-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.total-amount {
+  color: white;
+  font-size: 1.25rem;
 }
 
 @media screen and (min-width: 2000px) {

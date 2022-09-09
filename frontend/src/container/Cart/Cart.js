@@ -24,7 +24,7 @@ const Cart = () => {
   }
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <section className="cart">
         {/* cart header */}
 

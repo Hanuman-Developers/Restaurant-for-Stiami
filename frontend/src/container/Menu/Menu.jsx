@@ -23,7 +23,6 @@ const Menu = () => {
 
   return (
     <>
-      <Navbar />
       <div className="main_container">
         <nav className="navbar">
           <div className="nav-container">

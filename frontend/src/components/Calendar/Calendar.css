@@ -1,0 +1,14 @@
+.main__container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.calendar__container {
+  margin: 40px 20px 40px 20px;
+
+  align-items: center;
+  color: black;
+  width: 90%;
+  height: 80%;
+}

@@ -15,6 +15,7 @@ node_modules
 /build
 
 # misc
+.vscode
 .DS_Store
 .env.local
 .env.development.local

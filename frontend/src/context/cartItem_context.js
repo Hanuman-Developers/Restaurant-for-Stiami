@@ -48,6 +48,28 @@ const AppProvider = ({ children }) => {
     console.log(state.total);
   }, [state.cart]);
 
+  /* Vertical NavBar */
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openSidebar = () => {
+    setIsSidebarOpen(true);
+  };
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  /* Authorization */
+  const [auth, setAuth] = useState({});
+
   return (
     <AppContext.Provider
       value={{
@@ -57,6 +79,19 @@ const AppProvider = ({ children }) => {
         increase,
         decrease,
         toggleAmount,
+
+        /*Vertical NavBar */
+
+        isSidebarOpen,
+        isModalOpen,
+        openModal,
+        closeModal,
+        openSidebar,
+        closeSidebar,
+
+        /* Authorization */
+        auth,
+        setAuth,
       }}
     >
       {children}
