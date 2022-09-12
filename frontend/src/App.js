@@ -19,6 +19,7 @@ import Home from "./container/Home"
 import Menu from "./container/Menu/Menu"
 import TableBook from "./container/TableBook/TableBook"
 import PaymentSuccess from "./container/PaymentSuccess/PaymentSuccess"
+import PaymentFail from "./container/PaymentFail/PaymentFail"
 
 const App = () => (
 	<div>
@@ -28,6 +29,7 @@ const App = () => (
 			<Route path='/menu' element={<Menu />} />
 			<Route path='/tables' element={<TableBook />} />
 			<Route path='/paymentSuccess' element={<PaymentSuccess />} />
+			<Route path='/paymentFailed' element={<PaymentFail />} />
 		</Routes>
 	</div>
 )

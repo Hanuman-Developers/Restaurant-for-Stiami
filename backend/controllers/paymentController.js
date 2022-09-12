@@ -20,7 +20,7 @@ const findTableDetails = expressAsyncHandler(async (tableid) => {
 })
 
 const handleTablePayment = asyncHandler(async (req, res, next) => {
-	const { product } = req.body
+	const { product } = req.bod
 
 	console.log(product)
 	const table = await findTableDetails(product.tableid)
@@ -34,7 +34,7 @@ const handleTablePayment = asyncHandler(async (req, res, next) => {
 					price_data: {
 						currency: "usd",
 						product_data: {
-							name: table.number,
+							name: `Table number ${table.number}`,
 						},
 						unit_amount: table.price * 100,
 					},
@@ -42,7 +42,7 @@ const handleTablePayment = asyncHandler(async (req, res, next) => {
 				},
 			],
 			success_url: "http://localhost:3000/paymentSuccess",
-			cancel_url: "http://localhost:3000/failedPayment",
+			cancel_url: "http://localhost:3000/paymentFailed",
 		})
 		console.log(session)
 		res.json({ url: session.url })
@@ -53,13 +53,13 @@ const handleTablePayment = asyncHandler(async (req, res, next) => {
 
 const fulfillOrder = (session) => {
 	// TODO: fill me in
-	console.log("Fulfilling order", session)
+	console.log("Fulfilling order", session.status)
 }
 
 const endPointSecret =
 	"whsec_efa983bb23b9f3dccb53d015aa4494a5b96391fa1066721a1ae8d73c47ee554a"
 
-const handlePaymentEvents = asyncHandler(async (req, res, next) => {
+const handleTablePayHook = asyncHandler(async (req, res, next) => {
 	const payload = req.body
 	const sig = req.headers["stripe-signature"]
 
@@ -80,10 +80,10 @@ const handlePaymentEvents = asyncHandler(async (req, res, next) => {
 		fulfillOrder(session)
 	}
 
-	res.status(200)
+	res.status(200).json({ received: true, session: session })
 })
 
-export { handleTablePayment, handlePaymentEvents, findTableDetails }
+export { handleTablePayment, handleTablePayHook }
 
 // const handleTablePayment = asyncHandler(async (req, res, next) => {
 // 	const { product, token } = req.body

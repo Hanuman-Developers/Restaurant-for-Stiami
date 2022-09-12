@@ -1,15 +1,9 @@
 import React, { useState } from "react"
 // pk_test_51Lg3dwKkKO8NA6ZZUmzeOWZGwxPxMRM1lMuGIMzQmjpIpMpBihzh0KdeZ7KqeuGAEwhLmxd6KIhGw32sz3sC7OiV00PJaxXNCJ
-import CheckoutForm from "./CheckoutForm"
 import "./Table.scss"
-import Alert from "@mui/material/Alert"
-import { loadStripe } from "@stripe/stripe-js"
-import { Elements } from "@stripe/react-stripe-js"
 import { images } from "../../constants"
-import axios from "axios"
 
 const Table = ({ capacity, number, bookedTables, tableid }) => {
-
 	const [product, setproduct] = useState({
 		name: `Table number ${number}`,
 		tableid: tableid,
@@ -35,6 +29,7 @@ const Table = ({ capacity, number, bookedTables, tableid }) => {
 			})
 			.catch((error) => {
 				console.log(error)
+				alert(error.message)
 			})
 	}
 
