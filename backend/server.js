@@ -1,20 +1,20 @@
-import express from "express"
-import dotenv from "dotenv"
-import cors from "cors"
-import Stripe from "stripe"
-import bodyParser from "body-parser"
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import Stripe from "stripe";
+import bodyParser from "body-parser";
 const stripe = new Stripe(
-	"sk_test_51Lg3dwKkKO8NA6ZZ8PDgogdqDpBGkpmPqOCQ9TdyP0yYsIP9zgWqpeErCeUXLorHZ8xHcbYZGKOnFChpyzQlDCiT00em6mYpSN"
-)
+  "sk_test_51Lg3dwKkKO8NA6ZZ8PDgogdqDpBGkpmPqOCQ9TdyP0yYsIP9zgWqpeErCeUXLorHZ8xHcbYZGKOnFChpyzQlDCiT00em6mYpSN"
+);
 
 const router = express.Router()
 
 import { notFound, errorHandler } from "./middlewares/errorMiddleware.js"
 import connectDB from "./config/db.js"
 
-import tablesRoutes from "./routes/tablesRoutes.js"
-import bookingRoutes from "./routes/bookingRoutes.js"
-import paymentRoutes from "./routes/paymentRoutes.js"
+import tablesRoutes from "./routes/tablesRoutes.js";
+import bookingRoutes from "./routes/bookingRoutes.js";
+import paymentRoutes from "./routes/paymentRoutes.js";
 
 dotenv.config()
 
@@ -72,6 +72,6 @@ app.use(errorHandler)
 const PORT = 5000
 
 app.listen(
-	PORT,
-	console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
-)
+  PORT,
+  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
+);
