@@ -4,6 +4,7 @@ import "./Product.css";
 import { CartState } from "../../context/cartItem_context";
 import FoodItem from "../../components/FoodItem/FoodItem";
 import { useLocation, useNavigate } from "react-router-dom";
+import AdminNavbar from "../../components/AdminNavbar/AdminNavbar";
 function Product() {
   const { cart, total, clearCart } = CartState();
   const history = useNavigate();
@@ -12,6 +13,7 @@ function Product() {
     <>
       <div className="main__container">
         <VerticalNav></VerticalNav>
+        <AdminNavbar></AdminNavbar>
 
         <div className="edit-grid-override">
           <h2>Products</h2>

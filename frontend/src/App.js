@@ -26,38 +26,38 @@ import EditFoodItem from "./container/EditFoodItem/EditFoodItem";
 import Login from "./container/Login/Login";
 import RequireAuth from "./utils/requireAuth";
 import Layout_ from "./container/Layout";
+import Dashboard from "./container/Dashboard/Dashboard";
 const App = () => {
   const { auth, setAuth } = CartState();
 
   useEffect(() => {
-    const getUser = () => {
-      fetch("http://localhost:5000/api/auth/login/success", {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        },
-      })
-        .then((response) => {
-          if (response.status === 200) return response.json();
-          throw new Error("authentication has been failed!");
-        })
-        .then((resObject) => {
-          console.log(resObject.user);
-
-          if (resObject.user.email === undefined) {
-            setAuth("");
-          } else {
-            setAuth(resObject.user.email);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    getUser();
+    // const getUser = () => {
+    //   fetch("http://localhost:5000/api/auth/login/success", {
+    //     method: "GET",
+    //     credentials: "include",
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //       "Access-Control-Allow-Credentials": true,
+    //     },
+    //   })
+    //     .then((response) => {
+    //       if (response.status === 200) return response.json();
+    //       throw new Error("authentication has been failed!");
+    //     })
+    //     .then((resObject) => {
+    //       console.log(resObject.user);
+    //       if (resObject.user.email === undefined) {
+    //         setAuth("");
+    //       } else {
+    //         setAuth(resObject.user.email);
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // };
+    // getUser();
   }, []);
 
   return (
@@ -68,14 +68,14 @@ const App = () => {
         <Route path="/" element={<Layout_ />}>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route element={<RequireAuth />}>
-            <Route path="/cart" element={<Cart />} />
-          </Route>
+          <Route element={<RequireAuth />}></Route>
           <Route path="/menu" element={<Menu />} />
+          <Route path="/cart" element={<Cart />} />
         </Route>
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/additem" element={<AddFoodItem />} />
         <Route path="/additem" element={<AddFoodItem />} />
+        <Route path="/dashboard" element={<Dashboard />} />
 
         <Route path="/product" element={<Product />} />
         <Route path="/edit/:title" element={<EditFoodItem />} />
