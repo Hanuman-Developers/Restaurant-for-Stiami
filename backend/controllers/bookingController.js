@@ -46,7 +46,7 @@ const getBookedTables = asyncHandler(async (req, res, next) => {
 		console.log(bookedTablesIds)
 
 		if (bookedTablesIds.length > 0) {
-			res.status(200).json({ 
+			res.status(200).json({
 				found: true,
 				data: bookedTablesIds,
 			})
@@ -63,6 +63,7 @@ const getBookedTables = asyncHandler(async (req, res, next) => {
 
 const createBooking = asyncHandler(async (req, res, next) => {
 	const date = new Date(req.body.date)
+	console.log("incoming date", typeof req.body.date)
 	const findBookingsOnDate = await Booking.find({ date: date })
 
 	const newBooking = {
@@ -99,7 +100,7 @@ const createBooking = asyncHandler(async (req, res, next) => {
 			{ $push: { bookings: newBooking } }
 		)
 
-		res.status(200).json({
+		res.status(201).json({
 			success: true,
 			message: "Your booking is confirmed.",
 		})
@@ -113,7 +114,7 @@ const createBooking = asyncHandler(async (req, res, next) => {
 
 		await newBookingsByDate.save()
 
-		res.status(200).json({
+		res.status(201).json({
 			success: true,
 			message: "Your table booking is confirmed.",
 		})

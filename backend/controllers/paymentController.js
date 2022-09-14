@@ -3,6 +3,7 @@ import asyncHandler from "express-async-handler"
 import Table from "../models/tablesModel.js"
 import Stripe from "stripe"
 import express from "express"
+import axios from "axios"
 const stripe = new Stripe(
 	"sk_test_51Lg3dwKkKO8NA6ZZ8PDgogdqDpBGkpmPqOCQ9TdyP0yYsIP9zgWqpeErCeUXLorHZ8xHcbYZGKOnFChpyzQlDCiT00em6mYpSN"
 )
@@ -11,16 +12,16 @@ const findTableDetails = expressAsyncHandler(async (tableid) => {
 	try {
 		const table = await Table.findById(tableid)
 		if (table) {
-			console.log(table)
 			return table
 		}
 	} catch (error) {
 		console.log(error)
+		throw new Error("Table not found")
 	}
 })
 
 const handleTablePayment = asyncHandler(async (req, res, next) => {
-	const { product } = req.bod
+	const { product } = req.body
 
 	console.log(product)
 	const table = await findTableDetails(product.tableid)
@@ -41,19 +42,55 @@ const handleTablePayment = asyncHandler(async (req, res, next) => {
 					quantity: 1,
 				},
 			],
+			metadata: {
+				tableid: product.tableid,
+				date: product.date,
+				startTimeinMins: product.startTimeinMins,
+				endTimeinMins: product.endTimeinMins,
+				email: product.email,
+			},
 			success_url: "http://localhost:3000/paymentSuccess",
 			cancel_url: "http://localhost:3000/paymentFailed",
 		})
-		console.log(session)
+		// console.log(session)
 		res.json({ url: session.url })
 	} catch (error) {
 		throw new Error(error)
 	}
 })
 
-const fulfillOrder = (session) => {
-	// TODO: fill me in
-	console.log("Fulfilling order", session.status)
+const fulfillOrder = asyncHandler(async (session) => {
+	console.log("session", session.metadata)
+
+	const { tableid, startTimeinMins, endTimeinMins, email, date } =
+		session.metadata
+	const table = await findTableDetails(tableid)
+	console.log(table)
+
+	try {
+		const res = await axios.post(
+			"http://localhost:5000/api/bookings/newBooking",
+			{
+				date: date,
+				tableid: tableid,
+				slotStart: startTimeinMins,
+				slotEnd: endTimeinMins,
+				status: "booked",
+				email: email,
+			}
+		)
+		console.log(res)
+		if (res.status === 201) {
+			console.log("Booking successful")
+			return
+		}
+	} catch (error) {
+		console.log(error)
+	}
+})
+
+const removeOrder = (session) => {
+	console.log("Error", session.failure_message)
 }
 
 const endPointSecret =
@@ -61,6 +98,7 @@ const endPointSecret =
 
 const handleTablePayHook = asyncHandler(async (req, res, next) => {
 	const payload = req.body
+	console.log(payload)
 	const sig = req.headers["stripe-signature"]
 
 	let event
@@ -71,50 +109,26 @@ const handleTablePayHook = asyncHandler(async (req, res, next) => {
 		console.log(err)
 		return res.status(400).send(`Webhook Error: ${err.message}`)
 	}
-
 	// Handle the checkout.session.completed event
 	if (event.type === "checkout.session.completed") {
-		const session = event.data.object
-
+		const session = await stripe.checkout.sessions.retrieve(
+			event.data.object.id,
+			{
+				expand: ["line_items"],
+			}
+		)
 		// Fulfill the purchase...
 		fulfillOrder(session)
+		res.status(200).json({ success: true })
+		return
+	} else if (event.type === "charge.failed") {
+		const session = event.data.object
+		// Fulfill the purchase...
+		removeOrder(session)
+		res.status(402).json({ success: false })
+		return
 	}
-
-	res.status(200).json({ received: true, session: session })
+	throw new Error("payment failed")
 })
 
 export { handleTablePayment, handleTablePayHook }
-
-// const handleTablePayment = asyncHandler(async (req, res, next) => {
-// 	const { product, token } = req.body
-// 	const idempotencyKey = uuidv4()
-
-// 	console.log(product, token, idempotencyKey)
-// 	// res.status(200).json({ data: "okay" })
-
-// 	return stripe.customers
-// 		.create({
-// 			email: token.email,
-// 			source: token.id,
-// 		})
-// 		.then((customer) => {
-// 			stripe.charges.create(
-// 				{
-// 					amount: product.price * 100,
-// 					currency: "usd",
-// 					customer: customer.id,
-// 					receipt_email: token.email,
-// 					description: `Purchase of ${product.name}`,
-// 					shipping: {
-// 						name: token.card.name,
-// 						address: {
-// 							country: token.card.address_country,
-// 						},
-// 					},
-// 				},
-// 				{ idempotencyKey }
-// 			)
-// 		})
-// 		.then((result) => res.status(200).json(result))
-// 		.catch((err) => console.log(err))
-// })

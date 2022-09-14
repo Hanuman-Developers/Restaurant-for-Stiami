@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useTable } from "../../context/TableContext"
 import dayjs from "dayjs"
 import TextField from "@mui/material/TextField"
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
@@ -25,21 +26,29 @@ const convertToMinutes = (hms) => {
 	return totalMinutes
 }
 
-const DateAndTime = ({
-	setShowTables,
-	tables,
-	setTables,
-	bookedTables,
-	setBookedTables,
-}) => {
-	const [date, setDate] = useState(dayjs("2022-08-18T10:00:00"))
-	const [startTime, setStartTime] = useState(dayjs("2014-08-18T11:00:00"))
-	const [endTime, setEndTime] = useState(dayjs("2014-08-18T14:00:00"))
+const DateAndTime = () => {
+	const {
+		tables,
+		setTables,
+		setShowTables,
+		bookedTables,
+		setBookedTables,
+		setStartTimeinMins,
+		setEndTimeinMins,
+		date,
+		setDate,
+		startTime,
+		setStartTime,
+		endTime,
+		setEndTime,
+	} = useTable()
 
 	const convertDateTime = () => {
 		const dateFormatted = date.format("YYYY-MM-DD")
 		const startMins = convertToMinutes(startTime.format("HH:mm:ss"))
 		const endMins = convertToMinutes(endTime.format("HH:mm:ss"))
+		setStartTimeinMins(startMins)
+		setEndTimeinMins(endMins)
 
 		return { dateFormatted, startMins, endMins }
 	}
@@ -52,11 +61,29 @@ const DateAndTime = ({
 		setStartTime(newValue)
 	}
 	const handleEndTimeChange = (newValue) => {
+		if (newValue < startTime) {
+			alert("End time cannot be before start time")
+			return
+		}
 		setEndTime(newValue)
 	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
+
+		if (startTime > endTime) {
+			alert("Start time cannot be after end time")
+			return
+		}
+
+		const currDate = new Date()
+		if (date < currDate && startTime < currDate) {
+			console.log(date)
+			console.log(currDate, startTime, endTime)
+			alert("Date and slot cannot be in the past")
+			return
+		}
+
 		try {
 			const { dateFormatted, startMins, endMins } = convertDateTime()
 			const fetchedTables = await getAllTables()
@@ -68,12 +95,16 @@ const DateAndTime = ({
 			if (fetchedbookedTables.found) {
 				const bookedTablesSet = new Set(fetchedbookedTables.data)
 				setBookedTables(bookedTablesSet)
+			} else {
+				const bookedTablesSet = new Set()
+				setBookedTables(bookedTablesSet)
 			}
 			setTables(fetchedTables.data.tables)
 			setShowTables(true)
 			console.log(bookedTables)
 			console.log(tables)
 		} catch (error) {
+			alert(error.response.data.message)
 			console.error(error.response.data.message)
 		}
 	}
@@ -84,7 +115,7 @@ const DateAndTime = ({
 				<div className='tableBook__container__form'>
 					<div className='tableBook__container__form__date'>
 						<MobileDatePicker
-							label='Date mobile'
+							label='Date of Booking'
 							inputFormat='YYYY/MM/DD'
 							value={date}
 							onChange={handleDateChange}

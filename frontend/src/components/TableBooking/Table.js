@@ -1,18 +1,23 @@
 import React, { useState } from "react"
-// pk_test_51Lg3dwKkKO8NA6ZZUmzeOWZGwxPxMRM1lMuGIMzQmjpIpMpBihzh0KdeZ7KqeuGAEwhLmxd6KIhGw32sz3sC7OiV00PJaxXNCJ
+import { useTable } from "../../context/TableContext"
 import "./Table.scss"
 import { images } from "../../constants"
 
-const Table = ({ capacity, number, bookedTables, tableid }) => {
+const Table = ({ capacity, number, tableid }) => {
+	const { bookedTables, startTimeinMins, endTimeinMins, date } = useTable()
+
 	const [product, setproduct] = useState({
 		name: `Table number ${number}`,
 		tableid: tableid,
+		startTimeinMins: startTimeinMins,
+		endTimeinMins: endTimeinMins,
+		date: date.format("YYYY-MM-DD"),
+		email: "vivek@gmail.com",
 	})
 
 	const makePayment = async () => {
 		const body = {
 			product: product,
-			tableid: tableid,
 		}
 
 		fetch("http://localhost:5000/api/payment/tables", {

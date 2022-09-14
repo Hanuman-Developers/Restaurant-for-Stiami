@@ -1,19 +1,26 @@
-import React, { useEffect } from "react"
+import React, { useContext } from "react"
+import { TableContext } from "../../context/TableContext"
 import { useState } from "react"
 import { Navbar, Table, DateAndTime } from "../../components"
+import { useTable, TableProvider } from "../../context/TableContext"
 
 import "./TableBook.scss"
 
 const TableBook = () => {
 	const tabless = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-	const [showTables, setShowTables] = useState(false)
 
-	const [tables, setTables] = useState([])
-	const [bookedTables, setBookedTables] = useState(new Set())
+	const {
+		tables,
+		setTables,
+		showTables,
+		setShowTables,
+		bookedTables,
+		setBookedTables,
+	} = useTable()
 
 	return (
-		<div>
-			<Navbar></Navbar>
+		<>
+			<Navbar />
 			<div className='tableBook'>
 				<div className='tableBook__container'>
 					<div className='tableBook__container__header'>
@@ -24,26 +31,19 @@ const TableBook = () => {
 							Select your date and time. We are open 24 hours.
 						</p>
 					</div>
-					<DateAndTime
-						setShowTables={setShowTables}
-						tables={tables}
-						setTables={setTables}
-						bookedTables={bookedTables}
-						setBookedTables={setBookedTables}
-					/>
+					<DateAndTime />
 					<div className='tableBook__container__tables'>
 						{showTables && tables.length > 0 ? (
 							tables.map((table, index) => (
 								<Table
 									capacity={table.capacity}
 									number={table.number}
-									bookedTables={bookedTables}
 									tableid={table._id}
 									key={index}
 								/>
 							))
 						) : (
-							<h1 className='tableBook__container__tables__noTables'>🍔</h1>
+							<h1 className='tableBook__container__tables__noTables'>🥘🥂🍨</h1>
 						)}
 						{/* {tables.length > 0 &&
 							tables.map((table, index) => (
@@ -52,7 +52,7 @@ const TableBook = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	)
 }
 
