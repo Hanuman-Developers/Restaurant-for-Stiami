@@ -74,6 +74,7 @@ const createBooking = asyncHandler(async (req, res, next) => {
 		name: req.body.name,
 		phone: req.body.phone,
 		email: req.body.email,
+		sessionid: req.body.sessionid,
 	}
 	if (findBookingsOnDate && findBookingsOnDate.length > 0) {
 		console.log(findBookingsOnDate[0].date)

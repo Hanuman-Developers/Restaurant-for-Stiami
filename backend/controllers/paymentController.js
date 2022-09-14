@@ -49,9 +49,11 @@ const handleTablePayment = asyncHandler(async (req, res, next) => {
 				endTimeinMins: product.endTimeinMins,
 				email: product.email,
 			},
-			success_url: "http://localhost:3000/paymentSuccess",
+			success_url:
+				"http://localhost:3000/paymentSuccess?session_id={CHECKOUT_SESSION_ID}",
 			cancel_url: "http://localhost:3000/paymentFailed",
 		})
+		console.log("creating session", session.id)
 		// console.log(session)
 		res.json({ url: session.url })
 	} catch (error) {
@@ -77,9 +79,9 @@ const fulfillOrder = asyncHandler(async (session) => {
 				slotEnd: endTimeinMins,
 				status: "booked",
 				email: email,
+				sessionid: session.id,
 			}
 		)
-		console.log(res)
 		if (res.status === 201) {
 			console.log("Booking successful")
 			return
@@ -118,11 +120,13 @@ const handleTablePayHook = asyncHandler(async (req, res, next) => {
 			}
 		)
 		// Fulfill the purchase...
+		console.log("checking session", session.id)
 		fulfillOrder(session)
 		res.status(200).json({ success: true })
 		return
 	} else if (event.type === "charge.failed") {
 		const session = event.data.object
+		console.log("checking session", session.id)
 		// Fulfill the purchase...
 		removeOrder(session)
 		res.status(402).json({ success: false })
@@ -131,4 +135,19 @@ const handleTablePayHook = asyncHandler(async (req, res, next) => {
 	throw new Error("payment failed")
 })
 
-export { handleTablePayment, handleTablePayHook }
+const paymentStatus = asyncHandler(async (req, res, next) => {
+	const { session_id } = req.query
+	console.log(session_id)
+	const session = await stripe.checkout.sessions.retrieve(session_id)
+	// console.log(session)
+	if (session.payment_status === "paid") {
+		res.status(200).json({ success: true })
+		return
+	} else {
+		res.status(402).json({ success: false })
+		return
+	}
+	throw new Error("Session not found")
+})
+
+export { handleTablePayment, handleTablePayHook, paymentStatus }

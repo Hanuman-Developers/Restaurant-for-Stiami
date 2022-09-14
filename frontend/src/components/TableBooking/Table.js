@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import axios from "axios"
 import { useTable } from "../../context/TableContext"
 import "./Table.scss"
 import { images } from "../../constants"
