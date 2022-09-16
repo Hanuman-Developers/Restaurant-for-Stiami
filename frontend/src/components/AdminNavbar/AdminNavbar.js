@@ -4,7 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import "../VerticalNav/VerticalNav.css";
-function AdminNavbar() {
+function AdminNavbar({ heading }) {
   return (
     <>
       <header>
@@ -20,15 +20,15 @@ function AdminNavbar() {
                 }}
               />
             </label>
-            <div>Dashboard</div>
+            <div>{heading}</div>
           </div>
         </h2>
 
-        <div className="search-wrapper">
-          {/* <span className="las la-search"></span> */}
+        {/* <div className="search-wrapper">
+          {/* <span className="las la-search"></span> 
           <SearchIcon />
           <input type="search" placeholder="Search Here"></input>
-        </div>
+        </div> */}
 
         <div class="user-wrapper">
           {/* <img src="" width="30px" height="30px" alt=""></img> */}

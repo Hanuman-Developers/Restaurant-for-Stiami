@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 export default function Icon({ color, children }) {
   return <StyledIcon background={color}>{children}</StyledIcon>;

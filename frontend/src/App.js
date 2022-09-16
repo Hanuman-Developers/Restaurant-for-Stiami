@@ -85,7 +85,7 @@ const App = () => {
         </Route>
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/additem" element={<AddFoodItem />} />
-        <Route path="/additem" element={<AddFoodItem />} />
+        {/* <Route path="/additemdemo" element={<AddFoodItemCopy />} /> */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/orderdashboard" element={<AdminOrderDashboard />} />
 

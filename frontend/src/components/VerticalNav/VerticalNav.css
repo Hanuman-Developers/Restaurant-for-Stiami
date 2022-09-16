@@ -165,6 +165,7 @@
   left: 0;
   top: 0;
   font-family: var(--font-base);
+  background: black;
 }
 
 .sidebar-brand {

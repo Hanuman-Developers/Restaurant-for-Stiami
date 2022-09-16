@@ -1,6 +1,14 @@
-import styled from "styled-components";
-export default function Input({ type, placeholder }) {
-  return <StyledInput type={type} placeholder={placeholder} />;
+import styled from "styled-components/macro";
+export default function Input({ type, name, value, onChange, placeholder }) {
+  return (
+    <StyledInput
+      type={type}
+      placeholder={placeholder}
+      onChange={onChange}
+      value={value}
+      name={name}
+    />
+  );
 }
 
 const StyledInput = styled.input`
@@ -22,8 +30,8 @@ const StyledInput = styled.input`
     border-radius: 2rem;
   }
   &::placeholder {
-    color: #b9abe099;
-    font-weight: 100;
+    color: #black;
+    font-weight: 500;
     font-size: 1rem;
   }
 `;

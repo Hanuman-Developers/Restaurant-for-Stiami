@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
-export default function Button({ content }) {
-  return <StyledButton>{content}</StyledButton>;
+export default function Button({ content, onSubmit }) {
+  return <StyledButton onClick={onSubmit}>{content}</StyledButton>;
 }
 
 const StyledButton = styled.button`

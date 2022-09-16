@@ -1,5 +1,5 @@
 import "./Login.css";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 import * as MaterialDesign from "react-icons/md";
 import GoogleIcon from "@mui/icons-material/Google";
 

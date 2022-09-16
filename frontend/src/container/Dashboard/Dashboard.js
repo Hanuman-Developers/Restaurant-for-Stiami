@@ -14,53 +14,54 @@ function Dashboard() {
   return (
     <>
       <VerticalNav />
-      <AdminNavbar />
+      <AdminNavbar heading="Dashboard" />
+      <>
+        <div className="board">
+          <div className="cards">
+            <div className="card-single">
+              <div>
+                <h1>54</h1>
+                <span>Customers</span>
+              </div>
+              <div>
+                {/* <span className="las la-users"></span> */}
+                <PeopleAltOutlinedIcon />
+              </div>
+            </div>
 
-      <div className="board">
-        <div className="cards">
-          <div className="card-single">
-            <div>
-              <h1>54</h1>
-              <span>Customers</span>
+            <div className="card-single">
+              <div>
+                <h1>54</h1>
+                <span>Orders</span>
+              </div>
+              <div>
+                {/* <span className="las la-shipping-bag"></span> */}
+                <AssignmentReturnedOutlinedIcon />
+              </div>
             </div>
-            <div>
-              {/* <span className="las la-users"></span> */}
-              <PeopleAltOutlinedIcon />
-            </div>
-          </div>
 
-          <div className="card-single">
-            <div>
-              <h1>54</h1>
-              <span>Orders</span>
+            <div className="card-single">
+              <div>
+                <h1>54</h1>
+                <span>Inventory</span>
+              </div>
+              <div>
+                <InventoryOutlinedIcon />
+              </div>
             </div>
-            <div>
-              {/* <span className="las la-shipping-bag"></span> */}
-              <AssignmentReturnedOutlinedIcon />
-            </div>
-          </div>
 
-          <div className="card-single">
-            <div>
-              <h1>54</h1>
-              <span>Inventory</span>
-            </div>
-            <div>
-              <InventoryOutlinedIcon />
-            </div>
-          </div>
-
-          <div className="card-single">
-            <div>
-              <h1>54</h1>
-              <span>Income</span>
-            </div>
-            <div>
-              <AttachMoneyOutlinedIcon />
+            <div className="card-single">
+              <div>
+                <h1>54</h1>
+                <span>Income</span>
+              </div>
+              <div>
+                <AttachMoneyOutlinedIcon />
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </>
     </>
   );
 }

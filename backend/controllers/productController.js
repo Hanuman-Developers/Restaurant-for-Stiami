@@ -2,12 +2,13 @@ import Product from "../models/product.js";
 import asyncHandler from "express-async-handler";
 
 const createNewProduct = asyncHandler(async (req, res, next) => {
-  console.log(req.body);
+  console.log("prod");
   const { name, image, category, price, description, stock } = req.body;
 
   const findProduct = await Product.find({ name: name }).lean().exec();
+  console.log(findProduct);
 
-  if (findProduct) {
+  if (findProduct.length > 0) {
     res.status(201).json({
       message: "Already exists",
     });

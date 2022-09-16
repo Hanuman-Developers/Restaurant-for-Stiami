@@ -10,6 +10,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  /* background-color: aquamarine; */
 }
 
 .dashboard-wrapper {
@@ -24,8 +25,11 @@ header {
   justify-content: space-between;
   flex-direction: row;
   padding: 1rem;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); */
   height: 90px;
+  /* color: var(--color-golden); */
+  background: black;
+  color: var(--color-golden);
 }
 
 header h2 {

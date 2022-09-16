@@ -118,9 +118,7 @@ const Navbar = () => {
       <nav className="sidebar">
         {/* Logo container */}
         <div className="sidebar-brand">
-          <h2>
-            <span className="lab la-stiami">Stiami</span>
-          </h2>
+          <h2>{/* <span className="lab la-stiami">Stiami</span> */}</h2>
         </div>
 
         {/* Sidebar Menu Items  */}
