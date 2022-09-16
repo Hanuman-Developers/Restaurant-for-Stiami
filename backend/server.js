@@ -20,6 +20,7 @@ import bookingRoutes from "./routes/bookingRoutes.js"
 import verifyJWT from "./middlewares/verifyjwt.js"
 import productRoutes from "./routes/ProductRoutes.js"
 import orderRoutes from "./routes/orderRoute.js"
+import paymentRoutes from "./routes/paymentRoutes.js"
 import "express-async-errors"
 
 dotenv.config()
@@ -59,6 +60,7 @@ app.use("/api/bookings", bookingRoutes)
 // Pass the accessToken as Bearer in Authorization for testing
 app.use("/api/products", productRoutes)
 app.use("/api/orders", orderRoutes)
+app.use("/api/payment", paymentRoutes)
 // app.use(notFound);
 // app.use(errorHandler);
 
