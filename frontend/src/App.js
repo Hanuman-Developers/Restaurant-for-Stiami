@@ -90,7 +90,7 @@ const App = () => {
         <Route path="/orderdashboard" element={<AdminOrderDashboard />} />
 
         <Route path="/product" element={<Product />} />
-        <Route path="/edit/:title" element={<EditFoodItem />} />
+        <Route path="/edit/:id" element={<EditFoodItem />} />
       </Routes>
     </div>
   );

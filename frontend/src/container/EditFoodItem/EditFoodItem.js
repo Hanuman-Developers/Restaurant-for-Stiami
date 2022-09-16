@@ -9,24 +9,27 @@ import Button from "../Login/Button";
 import Icon from "../Login/Icon";
 import Input from "../Login/Input";
 import { useParams, useLocation } from "react-router-dom";
-const UPDATE_URL = "products/update/:title";
 
-function EditFoodItem({}) {
+function EditFoodItem() {
   const options = ["Starters", "Main Course", "Dessert"];
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(false);
   const toggling = () => setIsOpen(!isOpen);
+  const _id = 1;
+  const UPDATE_URL = `products/update/${_id}`;
 
   const params = useParams();
+  console.log(params);
   const location = useLocation();
   const prod = location.state;
-  console.log(location.state.prod.price);
+  // console.log(location.state.price);
 
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
+  const [open, setOpen] = useState(true);
 
   const onOptionClicked = (value) => () => {
     setIsOpen(false);
@@ -39,24 +42,28 @@ function EditFoodItem({}) {
     setPrice(location.state.prod.price);
     setCategory(location.state.prod.category);
     setDescription(location.state.prod.description);
+    setOpen(false);
   }, []);
+  const product = {
+    name: name,
+    price: price,
+    category: category,
+    description: description,
+    image: image,
+  };
 
   async function onSubmit(e) {
     e.preventDefault();
+    console.log(category);
 
-    const prod = {
-      name: name,
-      price: price,
-      category: category,
-      description: description,
-      image: image,
-    };
+    console.log(prod);
 
     try {
       const response = await axios.post(UPDATE_URL, prod, {
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
+      setOpen(true);
     } catch (error) {
       console.log(error);
     }
@@ -103,7 +110,7 @@ function EditFoodItem({}) {
             <CatergoryContainer>
               <DropDownContainer>
                 <DropDownHeader onClick={toggling}>
-                  {selectedOption || "Starters"}
+                  {selectedOption || category}
                 </DropDownHeader>
                 {isOpen && (
                   <DropDownListContainer>
@@ -123,7 +130,7 @@ function EditFoodItem({}) {
               <TextArea> Category</TextArea>
             </CatergoryContainer>
             <ButtonContainer onClick={onSubmit}>
-              <Button content="Create" />
+              <Button content="Update" />
             </ButtonContainer>
             {/* </form> */}
           </FormContainer>

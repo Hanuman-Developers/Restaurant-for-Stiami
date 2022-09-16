@@ -12,7 +12,7 @@ import wines from "../../constants/data";
 // import Button from "@mui/material/Button";
 
 const FoodItem = ({
-  id,
+  _id,
   name,
   title,
   price,
@@ -31,7 +31,9 @@ const FoodItem = ({
     description: description,
     price: price,
     tags: tags,
+    category: category,
   };
+  console.log(prod);
   //const { remove, increase, decrease, toggleAmount } = useGlobalContext();
   const { cart, dispatch } = CartState();
 
@@ -40,7 +42,7 @@ const FoodItem = ({
   console.log(amount);
 
   const EditProduct = () => {
-    navigate(`/edit/${title}`, { repalce: true, state: { prod } });
+    //navigate(`/edit/${title}`, { repalce: true, state: { prod } });
   };
 
   return (
@@ -72,7 +74,7 @@ const FoodItem = ({
             backgroundColor: "green",
           }}
           onClick={() => {
-            navigate(`/edit/${name}`, { repalce: true, state: { prod } });
+            navigate(`/edit/${_id}`, { repalce: true, state: { prod } });
           }}
         >
           Edit

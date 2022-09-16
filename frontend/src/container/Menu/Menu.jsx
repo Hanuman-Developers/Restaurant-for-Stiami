@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import { NavLink } from "react-router-dom";
+import VerticalNav from "../../components/VerticalNav/VerticalNav";
 
 import { SubHeading, MenuItem } from "../../components";
 import { data, images } from "../../constants";
@@ -23,8 +24,9 @@ const Menu = () => {
 
   return (
     <>
-      <div className="main_container">
-        <nav className="navbar">
+      <VerticalNav />
+      <div className="board">
+        {/* <nav className="navbar">
           <div className="nav-container">
             <ul className={click ? "nav-menu active" : "nav-menu"}>
               <li className="nav-item ">
@@ -65,7 +67,7 @@ const Menu = () => {
               <i className={click ? "fas fa-times" : "fas fa-bars"}></i>
             </div>
           </div>
-        </nav>
+        </nav> */}
         <div className="salad-grid-override">
           {/* <div className="app__specialMenu_menu_items"> */}
           {cart.map((wine) => (
