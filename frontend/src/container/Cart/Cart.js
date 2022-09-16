@@ -10,6 +10,7 @@ import "./Cart.css"
 const Cart = () => {
 	const { cart, total, clearCart, amount, auth } = CartState()
 	console.log(amount)
+	console.log(cart)
 	const url = "/orders"
 
 	const viewItems = async () => {

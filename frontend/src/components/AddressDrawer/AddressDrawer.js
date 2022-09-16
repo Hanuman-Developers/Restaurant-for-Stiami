@@ -2,39 +2,97 @@ import * as React from "react"
 import Drawer from "@mui/material/Drawer"
 import Button from "@mui/material/Button"
 import List from "@mui/material/List"
-import Divider from "@mui/material/Divider"
-import ListItem from "@mui/material/ListItem"
-import ListItemButton from "@mui/material/ListItemButton"
-import ListItemIcon from "@mui/material/ListItemIcon"
-import ListItemText from "@mui/material/ListItemText"
-import InboxIcon from "@mui/icons-material/MoveToInbox"
-import MailIcon from "@mui/icons-material/Mail"
+import { ListItem } from "@mui/material"
+import { CartState } from "../../context/cartItem_context"
 import Box from "@mui/material/Box"
 import TextField from "@mui/material/TextField"
+import axios from "axios"
 
 export default function AddressDrawer() {
+	const { cart, addressLine1, addressLine2, pincode } = CartState()
+
+	const handleAddressForm = async () => {
+		if (
+			addressLine1.current.value === "" ||
+			addressLine2.current.value === "" ||
+			pincode.current.value === ""
+		) {
+			alert("Please fill all the fields")
+			return
+		}
+		console.log(
+			addressLine1.current.value,
+			addressLine2.current.value,
+			pincode.current.value
+		)
+
+		const result = cart.filter((item) => item.amount > 0)
+		// console.log(result)
+
+		const cartItems = []
+		result.map((item) => {
+			cartItems.push({
+				product: item._id,
+				quantity: item.amount,
+			})
+		})
+		console.log(cartItems)
+
+		const body = {
+			addressLine1: addressLine1.current.value,
+			addressLine2: addressLine2.current.value,
+			pincode: pincode.current.value,
+			cartItems: cartItems,
+		}
+
+		try {
+			fetch("http://localhost:5000/api/payment/cart", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify(body),
+			})
+				.then((res) => {
+					if (res.ok) return res.json()
+					return res.json().then((json) => Promise.reject(json))
+				})
+				.then(({ url }) => {
+					window.location = url
+				})
+				.catch((error) => {
+					console.log(error)
+					alert(error.message)
+				})
+		} catch (error) {
+			console.log(error)
+		}
+		console.log("form submitted")
+	}
+
+	//**************drawer states************ */
 	const [state, setState] = React.useState({
 		right: false,
 	})
 
 	const toggleDrawer = (anchor, open) => (event) => {
-		if (event.key === "Tab" || event.key === "Shift") {
+		if (
+			(event.type === "keydown" && event.key === "Tab") ||
+			event.key === "Shift"
+		) {
 			return
 		}
 
 		setState({ ...state, [anchor]: open })
 	}
+	//**************drawer states************ */
 
 	const list = (anchor) => (
 		<Box
 			sx={{
-				width: anchor === "top" || anchor === "bottom" ? "auto" : 300,
-				marginLeft: "100px",
+				width: anchor === "top" || anchor === "bottom" ? "auto" : 250,
+				marginLeft: "50px",
 				marginTop: "100px",
 			}}
 			role='presentation'
-			// onClick={toggleDrawer(anchor, false)}
-			// onKeyDown={toggleDrawer(anchor, false)}
 		>
 			<h2 style={{ color: "#fff" }}>Enter your address</h2>
 			<List>
@@ -52,20 +110,30 @@ export default function AddressDrawer() {
 							label='Address Line 1'
 							variant='standard'
 							fullWidth
+							inputRef={addressLine1}
+							required
 						/>
 						<TextField
 							id='standard-basic'
 							label='Address Line 2'
 							variant='standard'
 							fullWidth
+							inputRef={addressLine2}
+							required
 						/>
 						<TextField
 							id='standard-basic'
 							label='Enter Pin Code'
 							variant='standard'
 							fullWidth
+							inputRef={pincode}
+							required
 						/>
-						<Button sx={{ background: "white" }} variant='contained'>
+						<Button
+							onClick={handleAddressForm}
+							sx={{ background: "white" }}
+							variant='contained'
+						>
 							Pay
 						</Button>
 					</Box>
