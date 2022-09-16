@@ -72,11 +72,11 @@ const Menu = () => {
             <MenuItem
               key={wine.id}
               {...wine}
-              // id={wine.id}
-              // title={wine.title}
-              // price={wine.price}
-              // tags={wine.tags}
-              // amount={wine.amount}
+              id={wine._id}
+              title={wine.title}
+              price={wine.price}
+              tags={wine.tags}
+              amount={wine.amount}
             />
           ))}
           {/* </div> */}

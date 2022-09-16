@@ -10,6 +10,7 @@ import verifyRoles from "../middlewares/verifyroles.js";
 
 router.route("/create").post(createNewProduct);
 router.route("/update/:title").post(updateProduct);
-router.get("/", verifyRoles(ROLES_LIST.Admin), getAllProducts);
+// router.get("/", verifyRoles(ROLES_LIST.Admin), getAllProducts);
+router.get("/", getAllProducts);
 
 export default router;

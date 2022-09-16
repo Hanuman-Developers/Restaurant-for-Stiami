@@ -2,8 +2,8 @@ import React, { useState, useContext, useReducer, useEffect } from "react";
 import { data } from "../constants";
 import { cartReducer } from "./reducer";
 //import reducer from "./reducer";
-
-const url = "https://course-api.com/react-useReducer-cart-project";
+import axios from "../apis/axios";
+const url = "products/";
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
@@ -29,8 +29,12 @@ const AppProvider = ({ children }) => {
   };
   const fetchData = async () => {
     dispatch({ type: "LOADING" });
-    //const response = await fetch(url)
-    const cart = data.wines;
+    const product = await axios.get(url, {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    });
+    const cart = product.data;
+    console.log(cart);
     dispatch({ type: "DISPLAY_ITEMS", payload: cart });
   };
   const toggleAmount = (id, type) => {

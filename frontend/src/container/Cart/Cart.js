@@ -4,11 +4,30 @@ import { CartState } from "../../context/cartItem_context";
 import Navbar from "../../components/Navbar/Navbar";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-
+import axios from "../../apis/axios";
 import "./Cart.css";
 const Cart = () => {
-  const { cart, total, clearCart, amount } = CartState();
+  const { cart, total, clearCart, amount, auth } = CartState();
   console.log(amount);
+  const url = "/orders";
+
+  const viewItems = async () => {
+    const result = cart.filter((item) => item.amount > 0);
+    console.log(result);
+    const prod = {
+      user: auth,
+      orderItems: result,
+      // shippingAddress: {},
+      totalPrice: total,
+    };
+
+    const response = await axios.post(url, prod, {
+      headers: { "Content-Type": "application/json" },
+      withCredentials: true,
+    });
+
+    console.log(response);
+  };
 
   if (cart.length === 0) {
     return (
@@ -93,6 +112,7 @@ const Cart = () => {
               sx={{
                 background: "grey",
               }}
+              onClick={viewItems}
             >
               Proceed to Checkout
             </Button>

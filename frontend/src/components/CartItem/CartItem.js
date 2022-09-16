@@ -8,7 +8,7 @@ import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined
 
 const CartItem = ({ id, img, title, price, amount }) => {
   const { remove, increase, decrease, toggleAmount, cart } = CartState();
-  return (
+  return amount > 0 ? (
     <article className="cart-item" style={{ animation: `0.17s` }}>
       {/* <img src={img} alt={title} /> */}
       <div className="title__button">
@@ -62,6 +62,8 @@ const CartItem = ({ id, img, title, price, amount }) => {
         <h4 className="item-price">${price}</h4>
       </div>
     </article>
+  ) : (
+    <div></div>
   );
 };
 

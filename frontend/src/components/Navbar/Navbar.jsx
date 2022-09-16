@@ -7,6 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { CartState } from "../../context/cartItem_context";
 import axios from "../../apis/axios";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
   const location = useLocation();
@@ -65,14 +66,7 @@ const Navbar = () => {
           <a href="#about">About</a>
         </li>
         <li className="p__opensans ">
-          <a
-            href=""
-            onClick={() => {
-              history("/menu");
-            }}
-          >
-            Menu
-          </a>
+          <Link to="/menu">Menu</Link>
         </li>
         <li className="p__opensans">
           <a href="#awards">Awards</a>

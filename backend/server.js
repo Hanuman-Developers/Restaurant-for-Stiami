@@ -8,8 +8,10 @@ import cookieSession from "cookie-session";
 import corsOptions from "./config/corsOptions.js";
 import passport from "passport";
 import passportSetup from "./middlewares/passport.js";
-
+import { createServer } from "http";
+import { Server } from "socket.io";
 import credentials from "./middlewares/credentials.js";
+import Orders from "./models/order.js";
 import registerRoutes from "./routes/registerRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import refreshTokenRoutes from "./routes/refreshTokenRoutes.js";
@@ -17,7 +19,7 @@ import tablesRoutes from "./routes/tablesRoutes.js";
 import bookingRoutes from "./routes/bookingRoutes.js";
 import verifyJWT from "./middlewares/verifyjwt.js";
 import productRoutes from "./routes/ProductRoutes.js";
-
+import orderRoutes from "./routes/orderRoute.js";
 import "express-async-errors";
 
 dotenv.config();
@@ -56,12 +58,55 @@ app.use("/api/bookings", bookingRoutes);
 
 // Pass the accessToken as Bearer in Authorization for testing
 app.use("/api/products", productRoutes);
+app.use("/api/orders", orderRoutes);
 // app.use(notFound);
 // app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
+// our server instance
 
-app.listen(
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+  // ...
+  // cors: {
+  //   origin: "https://localhost:3000/",
+  //   methods: ["GET", "POST"],
+  //   credentials: true,
+  // },
+  cors: {
+    origin: "*",
+  },
+});
+
+io.on("connect", async (socket) => {
+  console.log(socket.id);
+
+  socket.emit("hello", "world");
+
+  socket.on("response", (arg) => {
+    console.log(arg);
+  });
+
+  socket.on("mark_shipped", async (id) => {
+    console.log("shipped");
+    // socket.emit("Success", "sent");
+    const order = await Orders.find({ email: id }).lean().exec();
+    const updateDocument = {
+      $set: { status: "shipped" },
+    };
+    const result = await Orders.updateOne({ email: id }, updateDocument);
+
+    io.sockets.emit("Check", "done");
+
+    console.log(order);
+  });
+
+  /* */
+
+  // ...
+});
+
+httpServer.listen(
   PORT,
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
 );

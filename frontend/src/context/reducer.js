@@ -59,8 +59,12 @@ export const cartReducer = (state, action) => {
     return { ...state, cart: action.payload, loading: false };
   }
   if (action.type === "TOGGLE_AMOUNT") {
+    console.log("ïnside toggle");
+
     let tempCart = state.cart.map((cartItem) => {
-      if (cartItem.id === action.payload.id) {
+      console.log(cartItem._id);
+      console.log(action.payload.id);
+      if (cartItem._id === action.payload.id) {
         if (action.payload.type === "inc") {
           console.log("amount");
 
