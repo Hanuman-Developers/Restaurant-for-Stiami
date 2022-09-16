@@ -10,7 +10,7 @@ import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
 import { MdAddChart } from "react-icons/md";
 import wines from "../../constants/data";
 
-const MenuItem = ({ id, title, price, tags, amount }) => {
+const MenuItem = ({ id, title, name, price, tags, amount }) => {
   const [add, setAdd] = useState(true);
   const { increase, decrease, toggleAmount } = CartState();
 
@@ -120,7 +120,7 @@ const MenuItem = ({ id, title, price, tags, amount }) => {
     // </div>
     <div className="salad-card" style={{ animation: `0.17s` }}>
       <img class="salad-card-image" src={tags} alt={title}></img>
-      <h2 className="salad-card-name">{title} </h2>
+      <h2 className="salad-card-name">{name} </h2>
       <p className="salad-card-price">${price}</p>
       <div className="cart_container">
         <button className="salad-card-add-to-cart">

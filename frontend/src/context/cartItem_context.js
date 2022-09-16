@@ -9,7 +9,7 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, {
     // loading: false,
-    cart: data.wines,
+    cart: [],
     total: 0,
     amount: 0,
   });

@@ -49,9 +49,9 @@ const Cart = () => {
 
         {/* cart items */}
         <div className="cart__container">
-          <header>
+          {/* <header>
             <h2>Cart</h2>
-          </header>
+          </header> */}
           {cart.map((item) => {
             return <CartItem key={item.id} {...item} />;
           })}

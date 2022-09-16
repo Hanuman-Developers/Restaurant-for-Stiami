@@ -31,9 +31,14 @@ export const cartReducer = (state, action) => {
     return { ...state, cart: tempCart };
   }
   if (action.type === "GET_TOTALS") {
-    let { total, amount } = state.cart.reduce(
+    console.log(state.cart);
+    console.log("INSIDE GET TOTTALS");
+
+    let { total, category, amount } = state.cart.reduce(
       (cartTotal, cartItem) => {
-        const { price, amount } = cartItem;
+        const { price, amount, category } = cartItem;
+        console.log(price);
+        console.log(category);
 
         const itemTotal = cartItem.price * cartItem.amount;
 

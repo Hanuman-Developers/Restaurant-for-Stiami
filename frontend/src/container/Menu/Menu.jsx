@@ -7,7 +7,7 @@ import { data, images } from "../../constants";
 import "./SpecialMenu.css";
 import { CartState } from "../../context/cartItem_context";
 import { Navbar } from "../../components";
-
+import MenuNavBar from "../../components/MenuNavBar/MenuNavBar.js";
 const Menu = () => {
   const { cart, total, clearCart } = CartState();
   console.log(cart);
@@ -24,7 +24,7 @@ const Menu = () => {
 
   return (
     <>
-      <VerticalNav />
+      <MenuNavBar />
       <div className="board">
         {/* <nav className="navbar">
           <div className="nav-container">

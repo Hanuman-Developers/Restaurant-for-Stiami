@@ -128,41 +128,41 @@ const MenuNavBar = () => {
               <a href="" className="active">
                 {/* <span className="las la-igloo"></span> */}
                 <span className="lab la-stiami"></span>
-                <DashboardCustomizeOutlinedIcon />
+                {/* <DashboardCustomizeOutlinedIcon /> */}
 
-                <span>Dashboard</span>
+                <span>Starters</span>
               </a>
             </li>
 
             <li>
               <a href="">
                 {/* <span className="las la-users"></span> */}
-                <PeopleAltOutlinedIcon />
-                <span>Customers</span>
+                {/* <PeopleAltOutlinedIcon /> */}
+                <span>Main Course</span>
               </a>
             </li>
 
             <li>
               <a href="">
                 {/* <span className="las la-clipboard-list"></span> */}
-                <CalendarMonthOutlinedIcon />
-                <span>Calender</span>
+                {/* <CalendarMonthOutlinedIcon /> */}
+                <span>Dessert</span>
               </a>
             </li>
 
             <li>
               <a href="">
                 {/* <span className="las la-receipt"></span> */}
-                <InventoryOutlinedIcon />
-                <span>Inventory</span>
+                {/* <InventoryOutlinedIcon /> */}
+                <span>Wine</span>
               </a>
             </li>
 
             <li>
               <a href="">
                 {/* <span className="las la-shipping-bag"></span> */}
-                <AssignmentReturnedOutlinedIcon />
-                <span>Orders</span>
+                {/* <AssignmentReturnedOutlinedIcon /> */}
+                <span>Beer</span>
               </a>
             </li>
           </ul>
@@ -172,4 +172,4 @@ const MenuNavBar = () => {
   );
 };
 
-export default Navbar;
+export default MenuNavBar;
