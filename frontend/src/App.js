@@ -32,6 +32,7 @@ import AdminOrderDashboard from "./container/AdminOrderDashboard/AdminOrderDashb
 import { io } from "socket.io-client"
 import AllOrders from "./container/AllOrders/AllOrders"
 import Myorders from "./container/Myorders/Myorders"
+import PaymentSuccess from "./container/PaymentSuccess/PaymentSuccess"
 import { ThemeProvider, createTheme } from "@mui/material/styles"
 import CssBaseline from "@mui/material/CssBaseline"
 const socket = io("http://localhost:5000")
@@ -93,6 +94,7 @@ const App = () => {
 						<Route path='/ordersuccess' element={<OrderSuccess />} />
 						<Route path='/allorders' element={<AllOrders />} />
 						<Route path='/my-orders' element={<Myorders />} />
+						<Route path='/paymentSuccess' element={<PaymentSuccess />} />
 					</Route>
 					<Route path='/calendar' element={<Calendar />} />
 					<Route path='/additem' element={<AddFoodItem />} />

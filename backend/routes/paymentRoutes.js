@@ -5,11 +5,13 @@ import {
 	handleTablePayHook,
 	paymentStatus,
 	handleCartPayment,
+	handleCartPayHook,
 } from "../controllers/paymentController.js"
 
-router.route("/tables").post(handleTablePayment).get(paymentStatus)
+router.route("/tables").post(handleTablePayment)
 router.route("/webhook/tables").post(handleTablePayHook)
-
-router.route("/cart").post(handleCartPayment).get(paymentStatus)
+router.route("/cart").post(handleCartPayment)
+router.route("/webhook/cart").post(handleCartPayHook)
+router.route("/").get(paymentStatus)
 
 export default router

@@ -169,12 +169,19 @@ const findProductDetails = expressAsyncHandler(async (productids) => {
 })
 
 const handleCartPayment = asyncHandler(async (req, res, next) => {
-	const { cartItems } = req.body
+	const { cartItems, addressLine1, addressLine2, pincode, user } = req.body
 	const cartItemsIds = cartItems.map((item) => item.product)
 
 	console.log(cartItems)
 	const products = await findProductDetails(cartItemsIds)
 	console.log(products)
+
+	const customer = await stripe.customers.create({
+		metadata: {
+			user: user,
+			cart: JSON.stringify(req.body.cartItems),
+		},
+	})
 
 	const line_items = products.map((product, index) => {
 		return {
@@ -182,6 +189,10 @@ const handleCartPayment = asyncHandler(async (req, res, next) => {
 				currency: "usd",
 				product_data: {
 					name: product.name,
+					// Images: product.image,
+					metadata: {
+						id: product._id,
+					},
 				},
 				unit_amount: product.price * 100,
 			},
@@ -196,7 +207,13 @@ const handleCartPayment = asyncHandler(async (req, res, next) => {
 			payment_method_types: ["card"],
 			mode: "payment",
 			line_items: line_items,
-			metadata: {},
+			metadata: {
+				addressLine1: addressLine1,
+				addressLine2: addressLine2,
+				pincode: pincode,
+				user: user,
+			},
+			customer: customer.id,
 			success_url:
 				"http://localhost:3000/paymentSuccess?session_id={CHECKOUT_SESSION_ID}",
 			cancel_url: "http://localhost:3000/paymentFailed",
@@ -209,6 +226,83 @@ const handleCartPayment = asyncHandler(async (req, res, next) => {
 	}
 })
 
+const fullfillCartOrder = asyncHandler(async (customer, data) => {
+	const Items = JSON.parse(customer.metadata.cart)
+
+	const products = Items.map((item) => {
+		return {
+			productId: item.product,
+			quantity: item.quantity,
+		}
+	})
+
+	// const { addressLine1, addressLine2, pincode, user } = session.metadata
+	const shipping = data.metadata.addressLine1 + " " + data.metadata.addressLine2
+
+	console.log(
+		"final order",
+		customer.metadata.user,
+		data.customer,
+		data.payment_intent,
+		products,
+		data.amount_subtotal,
+		data.amount_total,
+		shipping,
+		data.payment_status
+	)
+
+	try {
+		const res = await axios.post("http://localhost:5000/api/orders", {
+			userId: customer.metadata.user,
+			customerId: data.customer,
+			paymentIntentId: data.payment_intent,
+			products,
+			subtotal: data.amount_subtotal,
+			total: data.amount_total,
+			shipping: shipping,
+			payment_status: data.payment_status,
+		})
+		if (res.status === 201) {
+			console.log("Order successful")
+			return
+		}
+	} catch (error) {
+		console.log(error)
+	}
+})
+
+const handleCartPayHook = asyncHandler(async (req, res, next) => {
+	const payload = req.body
+	console.log(payload)
+	const sig = req.headers["stripe-signature"]
+
+	let event
+
+	try {
+		event = stripe.webhooks.constructEvent(payload, sig, endPointSecret)
+	} catch (err) {
+		console.log(err)
+		return res.status(400).send(`Webhook Error: ${err.message}`)
+	}
+	const data = event.data.object
+	// Handle the checkout.session.completed event
+	if (event.type === "checkout.session.completed") {
+		stripe.customers
+			.retrieve(data.customer)
+			.then(async (customer) => {
+				try {
+					// CREATE ORDER
+					fullfillCartOrder(customer, data)
+				} catch (err) {
+					console.log(typeof createOrder)
+					console.log(err)
+				}
+			})
+			.catch((err) => console.log(err.message))
+	}
+	res.status(200).end()
+})
+
 //**************Cart Payment************** */
 
 export {
@@ -216,4 +310,5 @@ export {
 	handleTablePayHook,
 	paymentStatus,
 	handleCartPayment,
+	handleCartPayHook,
 }

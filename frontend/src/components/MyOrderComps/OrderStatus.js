@@ -8,37 +8,11 @@ import { isDateSelectionValid } from "@fullcalendar/react"
 
 const steps = ["Ordered", "Shipped", "Delivered"]
 
-export default function OrderStatus() {
-	const _id = "6323bd64ba23db2ec19abee0"
-
-	const getOrderURL = `/orders/${_id}`
-	const [isShipped, setShipped] = useState(false)
-	const [isDelivered, setDelivered] = useState(false)
-
-	useEffect(async () => {
-		const prod = {
-			_id: _id,
-		}
-		try {
-			const response = await axios.post(getOrderURL, prod, {
-				headers: { "Content-Type": "application/json" },
-				withCredentials: true,
-			})
-
-			if (response.data.orderStatus == "Shipped") {
-				console.log("yes")
-				setShipped(true)
-			}
-			console.log(response)
-		} catch (error) {
-			console.log(error)
-		}
-	}, [])
-
+export default function OrderStatus({ status }) {
 	const getState = () => {
-		if (isDelivered) {
+		if (status === "delivered") {
 			return 3
-		} else if (isShipped) {
+		} else if (status === "ordered") {
 			return 2
 		} else {
 			return 1

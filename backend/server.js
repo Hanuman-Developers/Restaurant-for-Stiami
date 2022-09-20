@@ -29,6 +29,7 @@ connectDB()
 const app = express()
 app.use(credentials)
 app.use(cors(corsOptions))
+const router = express.Router()
 
 app.use(
 	cookieSession({
@@ -46,23 +47,24 @@ app.use(passport.session())
 // if (process.env.NODE_ENV === "development") {
 // 	app.use(morgan("dev"))
 // }
-
+app.use("/api/payment/webhook/tables", express.raw({ type: "*/*" }))
+app.use("/api/payment/webhook/cart", express.raw({ type: "*/*" }))
 app.use(express.json())
-app.use("/api/register", registerRoutes)
-app.use("/api/auth", authRoutes)
-app.use("/api/refresh", refreshTokenRoutes)
-app.use("/api/tables", tablesRoutes)
-app.use("/api/bookings", bookingRoutes)
+router.use("/register", registerRoutes)
+router.use("/auth", authRoutes)
+router.use("/refresh", refreshTokenRoutes)
+router.use("/tables", tablesRoutes)
+router.use("/bookings", bookingRoutes)
 
 // Add cookie parser for this middleware
-// app.use(verifyJWT);
-
-// Pass the accessToken as Bearer in Authorization for testing
-app.use("/api/products", productRoutes)
-app.use("/api/orders", orderRoutes)
-app.use("/api/payment", paymentRoutes)
+// app.use(veJW
+// Pass the asToken as Bearer in Authorization for testing
+router.use("/products", productRoutes)
+router.use("/orders", orderRoutes)
+router.use("/payment", paymentRoutes)
 // app.use(notFound);
 // app.use(errorHandler);
+app.use("/api", router)
 
 const PORT = process.env.PORT || 5000
 // our server instance

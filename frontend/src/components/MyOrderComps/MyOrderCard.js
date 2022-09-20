@@ -1,52 +1,42 @@
 import React from "react"
+import dayjs from "dayjs"
 import OrderStatus from "./OrderStatus"
 
-const MyOrderCard = () => {
+const MyOrderCard = ({ orderItem }) => {
 	return (
 		<div className='myorders__container__cards__card'>
 			<div className='myorders__container__cards__card__left'>
 				<div className='myorders__container__cards__card__left__header'>
 					<h1 className='myorders__container__cards__card__left__header__title'>
-						Order: #Ab132432b
+						Order: {orderItem.order._id}
 					</h1>
 					<p className='myorders__container__cards__card__left__header__date'>
-						Date: 12/12/2021
+						Date: {dayjs(orderItem.order.createdAt).format("DD MMM YYYY")}
 					</p>
 				</div>
 				<div className='myorders__container__cards__card__left__items'>
 					<h2 className='myorders__container__cards__card__left__items__title'>
 						Items
 					</h2>
-					<div className='myorders__container__cards__card__left__items__item'>
-						<div className='myorders__container__cards__card__left__items__item__name'>
-							Item Name
+					{orderItem.order.products.map((product, index) => (
+						<div
+							className='myorders__container__cards__card__left__items__item'
+							key={index}
+						>
+							<div className='myorders__container__cards__card__left__items__item__name'>
+								{orderItem.productDetails[index].prodName} x {product.quantity}
+							</div>
+							<div className='myorders__container__cards__card__left__items__item__price'>
+								$ {orderItem.productDetails[index].prodPrice * product.quantity}
+							</div>
 						</div>
-						<div className='myorders__container__cards__card__left__items__item__price'>
-							Item price
-						</div>
-					</div>
-					<div className='myorders__container__cards__card__left__items__item'>
-						<div className='myorders__container__cards__card__left__items__item__name'>
-							Item Name
-						</div>
-						<div className='myorders__container__cards__card__left__items__item__price'>
-							Item price
-						</div>
-					</div>
-					<div className='myorders__container__cards__card__left__items__item'>
-						<div className='myorders__container__cards__card__left__items__item__name'>
-							Item Name
-						</div>
-						<div className='myorders__container__cards__card__left__items__item__price'>
-							Item price
-						</div>
-					</div>
+					))}
 				</div>
 				<div className='linee'>
 					<hr />
 				</div>
 				<h2 className='myorders__container__cards__card__left__total'>
-					Total: $60
+					Total: $ {orderItem.order.total / 100}
 				</h2>
 			</div>
 			<div className='myorders__container__cards__card__right'>
@@ -56,7 +46,7 @@ const MyOrderCard = () => {
 					</h1>
 				</div>
 				<div className='myorders__container__cards__card__right__status'>
-					<OrderStatus />
+					<OrderStatus status={orderItem.order.delivery_status} />
 				</div>
 			</div>
 		</div>

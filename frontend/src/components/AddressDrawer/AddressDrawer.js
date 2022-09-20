@@ -9,7 +9,7 @@ import TextField from "@mui/material/TextField"
 import axios from "axios"
 
 export default function AddressDrawer() {
-	const { cart, addressLine1, addressLine2, pincode } = CartState()
+	const { cart, addressLine1, addressLine2, pincode, auth } = CartState()
 
 	const handleAddressForm = async () => {
 		if (
@@ -25,6 +25,11 @@ export default function AddressDrawer() {
 			addressLine2.current.value,
 			pincode.current.value
 		)
+
+    if(cart.length === 0) {
+      alert("Cart is empty")
+      return
+    }
 
 		const result = cart.filter((item) => item.amount > 0)
 		// console.log(result)
@@ -43,6 +48,7 @@ export default function AddressDrawer() {
 			addressLine2: addressLine2.current.value,
 			pincode: pincode.current.value,
 			cartItems: cartItems,
+			user: auth,
 		}
 
 		try {
