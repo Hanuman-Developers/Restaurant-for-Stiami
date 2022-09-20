@@ -1,5 +1,6 @@
 import asyncHandler from "express-async-handler"
 import Booking from "../models/bookingsByDateModel.js"
+import Table from "../models/tablesModel.js"
 
 const getBookings = asyncHandler(async (req, res, next) => {
 	const bookings = await Booking.find()
@@ -14,9 +15,16 @@ const getBookings = asyncHandler(async (req, res, next) => {
 	}
 })
 
-const getFreeTables = asyncHandler(async (req, res, next) => {
+const getBookedTables = asyncHandler(async (req, res, next) => {
 	const date = new Date(req.query.date)
 	const findBookingsOnDate = await Booking.find({ date: date })
+
+	if (findBookingsOnDate.length == 0) {
+		res
+			.status(404)
+			.json({ found: false, message: "No bookings found on this date" })
+		return
+	}
 
 	if (findBookingsOnDate && findBookingsOnDate.length > 0) {
 		const slotStart = req.query.slotStart
@@ -24,26 +32,38 @@ const getFreeTables = asyncHandler(async (req, res, next) => {
 
 		console.log(date, slotStart, slotEnd)
 
-		const freeTables = []
+		const bookedTablesIds = []
 		for (let i = 0; i < findBookingsOnDate[0].bookings.length; i++) {
 			if (
-				findBookingsOnDate[0].bookings[i].slotStart >= slotEnd ||
-				findBookingsOnDate[0].bookings[i].slotEnd <= slotStart
+				findBookingsOnDate[0].bookings[i].slotStart < slotEnd &&
+				findBookingsOnDate[0].bookings[i].slotEnd > slotStart
 			) {
-				freeTables.push(findBookingsOnDate[0].bookings[i].tableid)
+				bookedTablesIds.push(findBookingsOnDate[0].bookings[i].tableid)
 			}
 		}
 
-		res.status(200).json({
-			data: freeTables,
-		})
+		console.log(bookedTablesIds.length)
+		console.log(bookedTablesIds)
+
+		if (bookedTablesIds.length > 0) {
+			res.status(200).json({
+				found: true,
+				data: bookedTablesIds,
+			})
+		} else {
+			res.status(404).json({
+				found: false,
+				message: "No bookings found on this date and time",
+			})
+		}
 	} else {
-		throw new Error("No bookings found")
+		throw new Error("No bookings found on this date")
 	}
 })
 
 const createBooking = asyncHandler(async (req, res, next) => {
 	const date = new Date(req.body.date)
+	console.log("incoming date", typeof req.body.date)
 	const findBookingsOnDate = await Booking.find({ date: date })
 
 	const newBooking = {
@@ -54,6 +74,7 @@ const createBooking = asyncHandler(async (req, res, next) => {
 		name: req.body.name,
 		phone: req.body.phone,
 		email: req.body.email,
+		sessionid: req.body.sessionid,
 	}
 	if (findBookingsOnDate && findBookingsOnDate.length > 0) {
 		console.log(findBookingsOnDate[0].date)
@@ -80,9 +101,9 @@ const createBooking = asyncHandler(async (req, res, next) => {
 			{ $push: { bookings: newBooking } }
 		)
 
-		res.status(200).json({
+		res.status(201).json({
 			success: true,
-			message: "Your table is booked.",
+			message: "Your booking is confirmed.",
 		})
 	} else {
 		console.log("creating new booking")
@@ -94,9 +115,9 @@ const createBooking = asyncHandler(async (req, res, next) => {
 
 		await newBookingsByDate.save()
 
-		res.status(200).json({
+		res.status(201).json({
 			success: true,
-			message: "Your table is booked.",
+			message: "Your table booking is confirmed.",
 		})
 	}
 })
@@ -121,4 +142,4 @@ const cancelBooking = asyncHandler(async (req, res, next) => {
 	}
 })
 
-export { getBookings, getFreeTables, createBooking, cancelBooking }
+export { getBookings, getBookedTables, createBooking, cancelBooking }

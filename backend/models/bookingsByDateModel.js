@@ -13,8 +13,9 @@ const bookingSchema = mongoose.Schema({
 			status: { type: String, required: true },
 			// user: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 			email: { type: String, required: true },
-			phone: { type: String, required: true },
-			name: { type: String, required: true },
+			phone: { type: String },
+			name: { type: String },
+			sessionid: { type: String },
 		},
 	],
 })
