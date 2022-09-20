@@ -3,6 +3,7 @@ import React from "react";
 import AdminNavbar from "../../components/AdminNavbar/AdminNavbar";
 import VerticalNav from "../../components/VerticalNav/VerticalNav";
 import "./Dashboard.css";
+import "../../components/VerticalNav/VerticalNav.css";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import AttachMoneyOutlinedIcon from "@mui/icons-material/AttachMoneyOutlined";
 import InventoryOutlinedIcon from "@mui/icons-material/InventoryOutlined";
@@ -16,47 +17,50 @@ function Dashboard() {
       <VerticalNav />
       <AdminNavbar heading="Dashboard" />
       <>
-        <div className="board">
-          <div className="cards">
-            <div className="card-single">
-              <div>
-                <h1>54</h1>
-                <span>Customers</span>
+        <div className="full_bg">
+          {/* <h1>Huck</h1> */}
+          <div className="board">
+            <div className="cards">
+              <div className="card-single">
+                <div>
+                  <h1>54</h1>
+                  <span>Customers</span>
+                </div>
+                <div>
+                  {/* <span className="las la-users"></span> */}
+                  <PeopleAltOutlinedIcon />
+                </div>
               </div>
-              <div>
-                {/* <span className="las la-users"></span> */}
-                <PeopleAltOutlinedIcon />
-              </div>
-            </div>
 
-            <div className="card-single">
-              <div>
-                <h1>54</h1>
-                <span>Orders</span>
+              <div className="card-single">
+                <div>
+                  <h1>54</h1>
+                  <span>Orders</span>
+                </div>
+                <div>
+                  {/* <span className="las la-shipping-bag"></span> */}
+                  <AssignmentReturnedOutlinedIcon />
+                </div>
               </div>
-              <div>
-                {/* <span className="las la-shipping-bag"></span> */}
-                <AssignmentReturnedOutlinedIcon />
-              </div>
-            </div>
 
-            <div className="card-single">
-              <div>
-                <h1>54</h1>
-                <span>Inventory</span>
+              <div className="card-single">
+                <div>
+                  <h1>54</h1>
+                  <span>Inventory</span>
+                </div>
+                <div>
+                  <InventoryOutlinedIcon />
+                </div>
               </div>
-              <div>
-                <InventoryOutlinedIcon />
-              </div>
-            </div>
 
-            <div className="card-single">
-              <div>
-                <h1>54</h1>
-                <span>Income</span>
-              </div>
-              <div>
-                <AttachMoneyOutlinedIcon />
+              <div className="card-single">
+                <div>
+                  <h1>54</h1>
+                  <span>Income</span>
+                </div>
+                <div>
+                  <AttachMoneyOutlinedIcon />
+                </div>
               </div>
             </div>
           </div>

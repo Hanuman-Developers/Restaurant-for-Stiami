@@ -9,7 +9,6 @@ import corsOptions from "./config/corsOptions.js";
 import passport from "passport";
 import passportSetup from "./middlewares/passport.js";
 import { createServer } from "http";
-import { Server } from "socket.io";
 import credentials from "./middlewares/credentials.js";
 import Orders from "./models/order.js";
 import registerRoutes from "./routes/registerRoutes.js";
@@ -66,45 +65,6 @@ const PORT = process.env.PORT || 5000;
 // our server instance
 
 const httpServer = createServer(app);
-const io = new Server(httpServer, {
-  // ...
-  // cors: {
-  //   origin: "https://localhost:3000/",
-  //   methods: ["GET", "POST"],
-  //   credentials: true,
-  // },
-  cors: {
-    origin: "*",
-  },
-});
-
-io.on("connect", async (socket) => {
-  console.log(socket.id);
-
-  socket.emit("hello", "world");
-
-  socket.on("response", (arg) => {
-    console.log(arg);
-  });
-
-  socket.on("mark_shipped", async (id) => {
-    console.log("shipped");
-    // socket.emit("Success", "sent");
-    const order = await Orders.find({ email: id }).lean().exec();
-    const updateDocument = {
-      $set: { status: "shipped" },
-    };
-    const result = await Orders.updateOne({ email: id }, updateDocument);
-
-    io.sockets.emit("Check", "done");
-
-    console.log(order);
-  });
-
-  /* */
-
-  // ...
-});
 
 httpServer.listen(
   PORT,

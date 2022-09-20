@@ -29,12 +29,8 @@ import Layout_ from "./container/Layout";
 import Dashboard from "./container/Dashboard/Dashboard";
 import OrderSuccess from "./container/Order/Success/OrderSuccess";
 import AdminOrderDashboard from "./container/AdminOrderDashboard/AdminOrderDashboard";
-import { io } from "socket.io-client";
 import AllOrders from "./container/AllOrders/AllOrders";
-const socket = io("http://localhost:5000");
-socket.on("connect", () => {
-  console.log(`${socket.id}`);
-});
+import Inventory from "./container/Inventory/Inventory";
 
 const App = () => {
   const { auth, setAuth } = CartState();
@@ -88,6 +84,7 @@ const App = () => {
         {/* <Route path="/additemdemo" element={<AddFoodItemCopy />} /> */}
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/orderdashboard" element={<AdminOrderDashboard />} />
+        <Route path="/inventory" element={<Inventory />} />
 
         <Route path="/product" element={<Product />} />
         <Route path="/edit/:id" element={<EditFoodItem />} />
@@ -96,4 +93,4 @@ const App = () => {
   );
 };
 
-export { App, socket };
+export { App };

@@ -4,6 +4,17 @@
   box-sizing: border-box;
   list-style-type: none;
   text-decoration: none;
+
+  /* background-image: url(../../../src/assets/bg.png); */
+}
+
+.header__all_size {
+  background-image: url(../../../src/assets/bg.png);
+  transition: all margin-left 300ms;
+  /* margin-left: 20%; */
+  width: 100%;
+  /* transition: all margin-left 300ms; */
+  z-index: 600;
 }
 
 .main-content {
@@ -13,26 +24,54 @@
   /* background-color: aquamarine; */
 }
 
-.dashboard-wrapper {
+.header-container {
+  width: 100%;
   display: flex;
-  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0rem 0rem 20px 20px;
+  border-bottom: 2px var(--color-golden) solid;
 }
 
-header {
-  transition: margin-left 300ms;
+.header-container h2 {
+  font-size: 2.2rem;
+}
+
+/* Checkbox false */
+.header {
+  width: 80%;
   margin-left: 20%;
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  padding: 1rem;
-  /* box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); */
+  padding-left: 4rem;
+  padding-right: 4rem;
   height: 90px;
-  /* color: var(--color-golden); */
   background: black;
   color: var(--color-golden);
+  transition: all left 300ms;
 }
 
-header h2 {
+/* .header {
+  width: calc(100%-120px);
+  /* margin-left: 20%; 
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  /* padding: 1rem; 
+  padding-left: 4rem;
+  padding-right: 4rem;
+
+  /* box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); 
+  height: 90px;
+  /* color: var(--color-golden); 
+  background: black;
+  color: var(--color-golden);
+  transition: left 300ms;
+  z-index: -100;
+} */
+
+.header h2 {
   margin-top: 0.3rem;
 }
 
@@ -68,25 +107,98 @@ header h2 {
   margin-top: -3px;
 }
 
-#nav-toggle:checked ~ header {
+#nav-toggle:checked ~ .header__all_size {
+  margin-left: 100px;
+  padding: 0rem;
+}
+#nav-toggle:checked ~ .header__all_size .header {
+  /* left: 100px; */
+  margin-left: 200px;
+  width: calc(100% - 120px);
+  justify-content: space-between;
+  flex-direction: row;
+  /* padding-left: 4rem;
+  padding-right: 4rem; */
+  margin: 0;
+  padding: 0;
+  height: 90px;
+  background: black;
+  color: var(--color-golden);
+  transition: left 300ms;
+  z-index: -100;
+}
+#nav-toggle:checked ~ .header__all_size .header .header-container {
   margin-left: 100px;
 }
 
 @media only screen and (max-width: 1200px) {
-  header {
-    margin-left: 100px;
+  .header__all_size {
+    /* margin-left: 100px; */
+    width: 100%;
+    padding: 0rem;
+    margin: 0;
+  }
+
+  .header {
+    left: 70px;
+    margin: 0;
+    width: calc(100% - 100px);
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 0;
+    /* padding-left: 4rem;
+    padding-right: 4rem; */
+
+    height: 90px;
+    background: black;
+    color: var(--color-golden);
+    transition: left 300ms;
+    z-index: -100;
   }
 }
 
 @media only screen and (max-width: 960px) {
+  .header__all_size {
+    /* margin-left: 100px; */
+    width: 100%;
+    margin: 0;
+
+    padding: 0rem;
+  }
+  .header {
+    /* margin-left: 100px;
+    padding-right: 4rem; */
+    left: 70px;
+    margin: 0;
+    width: calc(100% - 120px);
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 0;
+    /* padding-left: 4rem;
+    padding-right: 4rem; */
+
+    height: 90px;
+    background: black;
+    color: var(--color-golden);
+    transition: left 300ms;
+    z-index: -100;
+  }
 }
 
 @media only screen and (max-width: 768px) {
+  .header__all_size {
+    /* margin-left: 100px; */
+    width: 100%;
+    margin: 0;
+    padding: 0rem;
+  }
+
   .search-wrapper {
     display: none;
   }
 
-  header h2 label {
+  .header h2 label {
+    width: 100%;
     display: inline;
     text-align: center;
     padding-right: 0rem;
@@ -100,8 +212,33 @@ header h2 {
     justify-content: center !important;
   }
 
-  header {
-    width: 100% !important;
+  /* .header {
+    width: 100vw;
     margin-left: 0rem !important;
+  } */
+  .header__all_size {
+    /* margin-left: 100px; */
+    width: 100%;
+  }
+  .header__all_size .header {
+    width: calc(100% - 100px);
+    left: 70px;
+    padding: 0rem;
+  }
+  .header {
+    left: 70px;
+    margin: 0;
+    width: calc(100% - 120px);
+    justify-content: space-between;
+    flex-direction: row;
+    padding: 0;
+    /* padding-left: 4rem;
+    padding-right: 4rem; */
+
+    height: 90px;
+    background: black;
+    color: var(--color-golden);
+    transition: left 300ms;
+    z-index: -100;
   }
 }

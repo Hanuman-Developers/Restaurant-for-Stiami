@@ -1,3 +1,14 @@
 .order_admin {
   min-height: 100vh;
 }
+
+.bloc-accepted {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.bloc-tabs img {
+  /* background-color: white; */
+  /* margin-right: 1rem; */
+}

@@ -5,19 +5,43 @@
   list-style-type: none;
   text-decoration: none;
 }
+/* .full_bg {
+  width: 100%;
+  height: calc(100vh - 90px);
+  background-image: url(../../../src/assets/bg.png);
+  padding-left: 4rem;
+  padding-right: 3rem;
+
+} */
+
+.full_bg {
+  width: 100%;
+  height: calc(100vh - 90px);
+  background-image: url(../../../src/assets/bg.png);
+  /* padding: 1rem auto; */
+  /* padding-left: 4rem; */
+  /* padding-right: 3rem; */
+  /* background-color: red; */
+
+  /* z-index: 900; */
+}
+
+/*  Checkbox false */
 .board {
   margin-left: 20%;
   transition: margin-left 300ms;
-
+  background-color: black;
   padding: 1rem;
-  /* box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); */
   min-height: 90vh;
   background-color: rgba(223, 215, 215, 0.808);
-  /* color: var(--color-golden); */
   min-width: calc(100vh - 90px);
-  /* min-height: calc(100vh - 90px); */
   background-image: url(../../../src/assets/bg.png);
+  background-repeat: no-repeat;
+  background-size: auto;
 }
+/*  Checkbox True */
+
+/*  */
 
 .cards {
   /* margin-left: 20%; */
@@ -41,12 +65,35 @@
   color: var(--color-golden);
 }
 
-#nav-toggle:checked ~ .board {
-  margin-left: 100px;
+#nav-toggle:checked ~ .full_bg .board {
+  background-color: black;
+
+  margin-left: 120px;
+
+  min-height: 90vh;
+  background-color: rgba(223, 215, 215, 0.808);
+  min-width: calc(100vh - 100px);
+  background-image: url(../../../src/assets/bg.png);
+  background-repeat: no-repeat;
+  background-size: auto;
+  transition: all margin-left 800ms;
 }
 @media only screen and (max-width: 1200px) {
   .board {
-    margin-left: 100px;
+    margin-left: 120px;
+    transition: all margin-left 300ms;
+    background-color: black;
+    padding-left: 4rem;
+    padding-right: 1rem;
+
+    padding-top: 1rem;
+
+    min-height: 90vh;
+    background-color: rgba(223, 215, 215, 0.808);
+    min-width: calc(100vh - 90px);
+    background-image: url(../../../src/assets/bg.png);
+    background-repeat: no-repeat;
+    background-size: auto;
   }
 }
 

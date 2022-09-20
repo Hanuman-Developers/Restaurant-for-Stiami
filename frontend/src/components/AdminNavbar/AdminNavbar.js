@@ -6,23 +6,25 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import "../VerticalNav/VerticalNav.css";
 function AdminNavbar({ heading }) {
   return (
-    <>
-      <header>
-        <h2>
-          <div className="dashboard-wrapper">
-            {/* <span class="las la-bars"></span> */}
-
-            <label for="nav-toggle">
+    <div className="header__all_size ">
+      <div className="header ">
+        <div className="header-container glassmorphism ">
+          {/* <div className="dashboard-wrapper"> */}
+          {/* <span class="las la-bars"></span> */}
+          {/* <label for="nav-toggle">
               <MenuOutlinedIcon
                 sx={{
                   marginTop: "0.2rem",
                   // paddingLeft: "0.5rem",
+                  color: "white",
+                  marginRight: "1rem",
                 }}
               />
-            </label>
-            <div>{heading}</div>
-          </div>
-        </h2>
+            </label> */}
+
+          <h2>{heading}</h2>
+        </div>
+        {/* </div> */}
 
         {/* <div className="search-wrapper">
           {/* <span className="las la-search"></span> 
@@ -30,16 +32,16 @@ function AdminNavbar({ heading }) {
           <input type="search" placeholder="Search Here"></input>
         </div> */}
 
-        <div class="user-wrapper">
-          {/* <img src="" width="30px" height="30px" alt=""></img> */}
+        {/* <div class="user-wrapper">
+          {/* <img src="" width="30px" height="30px" alt=""></img> 
           <AccountCircleOutlinedIcon />
           <div>
             <h4>John Doe</h4>
             <small>Super Admin</small>
           </div>
-        </div>
-      </header>
-    </>
+        </div> */}
+      </div>
+    </div>
   );
 }
 

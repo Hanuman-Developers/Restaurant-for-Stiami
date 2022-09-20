@@ -4,9 +4,9 @@ import RemoveCircleOutlineOutlinedIcon from "@mui/icons-material/RemoveCircleOut
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import { CartState } from "../../context/cartItem_context";
 import "./MenuItem.css";
-import images from "../../constants/images";
+import images from "../../assets/salad4.png";
 import AddCircleRoundedIcon from "@mui/icons-material/AddCircleRounded";
-
+import salad4 from "../../constants/images";
 import { MdAddChart } from "react-icons/md";
 import wines from "../../constants/data";
 
@@ -119,7 +119,7 @@ const MenuItem = ({ id, title, name, price, tags, amount }) => {
     //   </div>
     // </div>
     <div className="salad-card" style={{ animation: `0.17s` }}>
-      <img class="salad-card-image" src={tags} alt={title}></img>
+      <img class="salad-card-image" src={salad4} alt={title}></img>
       <h2 className="salad-card-name">{name} </h2>
       <p className="salad-card-price">${price}</p>
       <div className="cart_container">

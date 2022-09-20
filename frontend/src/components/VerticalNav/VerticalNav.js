@@ -10,6 +10,7 @@ import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined
 import InventoryOutlinedIcon from "@mui/icons-material/InventoryOutlined";
 import AssignmentReturnedOutlinedIcon from "@mui/icons-material/AssignmentReturnedOutlined";
 import DashboardCustomizeOutlinedIcon from "@mui/icons-material/DashboardCustomizeOutlined";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
 import "./VerticalNav.css";
 import { CartState } from "../../context/cartItem_context";
@@ -115,14 +116,32 @@ const Navbar = () => {
 
     <>
       <input type="checkbox" id="nav-toggle" />
-      <nav className="sidebar">
+
+      <nav className="vertical_sidebar glassmorphism">
         {/* Logo container */}
-        <div className="sidebar-brand">
-          <h2>{/* <span className="lab la-stiami">Stiami</span> */}</h2>
+        <div className="vertical_sidebar-brand ">
+          <div className="vertical_sidebar-brand-logo">
+            <h2>
+              <span className="lab la-stiami">Stiami</span>
+            </h2>
+          </div>
+
+          <div className="vertical_sidebar-brand-toggle">
+            <label for="nav-toggle">
+              <MenuOutlinedIcon
+                sx={{
+                  marginTop: "0.2rem",
+                  // paddingLeft: "0.5rem",
+                  // color: "white",
+                  marginRight: "1rem",
+                }}
+              />
+            </label>
+          </div>
         </div>
 
-        {/* Sidebar Menu Items  */}
-        <div className="sidebar-menu">
+        {/* vertical_sidebar Menu Items  */}
+        <div className="vertical_sidebar-menu">
           <ul>
             <li>
               <a href="" className="active">

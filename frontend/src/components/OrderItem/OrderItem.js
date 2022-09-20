@@ -11,6 +11,13 @@ import { MdAddChart } from "react-icons/md";
 import wines from "../../constants/data";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import axios from "../../apis/axios";
+
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+
 const OrderItem = ({ _id, user, orderItems, totalPrice, isPaid }) => {
   const [orderStatus, setOrderStatus] = useState("");
   const [isDisabled, setDisabled] = useState(false);
@@ -63,17 +70,42 @@ const OrderItem = ({ _id, user, orderItems, totalPrice, isPaid }) => {
 
   return (
     <div className="order-card" style={{ animation: `0.17s` }}>
-      <div className="order-card-id">
-        <h2>{user}</h2>
+      <div className="order-container_one">
+        <div className="order-card-id">
+          <h2>{user}</h2>
+        </div>
+        {/* <h2 className="order-card-name">{} </h2> */}
+        <div className="food_cart_container">
+          {/* <button onClick={EditProduct}>Edit</button> */}
+          <form className="orderForm">
+            <label className="drop">
+              Order Status
+              <select
+                className="dropdown-status"
+                name="status"
+                value={orderStatus}
+                required
+                onChange={changeStatus}
+              >
+                <option className="select-status">Order Status </option>
+                {isDisabled ? (
+                  <option disabled value="Accepted">
+                    d Accepted
+                  </option>
+                ) : (
+                  <option value="Accepted">Accepted</option>
+                )}
+                <option value="Shipped">Shipped</option>
+              </select>
+            </label>
+          </form>
+        </div>
       </div>
       {/* <h2 className="order-card-name">{} </h2> */}
-      <div className="order-card-price">
-        <p>${totalPrice}</p>
-      </div>
-      {/* <h2 className="order-card-name">{} </h2> */}
-      <div class="order_items_container">
-        {/* <div class="force"> */}
-        {/* <ul>
+      <div className="order-container_two">
+        <div class="order_items_container">
+          {/* <div class="force"> */}
+          {/* <ul>
             {orderItems.map((item) => {
               <p>{item._id}</p>;
             })}
@@ -83,45 +115,26 @@ const OrderItem = ({ _id, user, orderItems, totalPrice, isPaid }) => {
             <li>Item 1</li> 
           </ul> */}
 
-        <ul>
-          {orderItems.map(({ name, amount }) => (
-            <div className="order-scrollbar-items">
-              <li>{name}</li>
-              <CloseOutlinedIcon
-                sx={{
-                  size: "small",
-                }}
-              />
-              <p>{amount}</p>
-            </div>
-          ))}
-        </ul>
-        {/* </div> */}
-      </div>
-      <div className="cart_container">
-        {/* <button onClick={EditProduct}>Edit</button> */}
-        <form className="orderForm">
-          <label className="drop">
-            Order Status
-            <select
-              className="dropdown-status"
-              name="status"
-              value={orderStatus}
-              required
-              onChange={changeStatus}
-            >
-              <option className="select-status">Order Status </option>
-              {isDisabled ? (
-                <option disabled value="Accepted">
-                  Accepted
-                </option>
-              ) : (
-                <option value="Accepted">Accepted</option>
-              )}
-              <option value="Shipped">Shipped</option>
-            </select>
-          </label>
-        </form>
+          <ul>
+            {orderItems.map(({ name, amount }) => (
+              <div className="order-scrollbar-items">
+                <div className="order-name-list">
+                  <li>{name}</li>
+                </div>
+                <CloseOutlinedIcon
+                  sx={{
+                    size: "small",
+                  }}
+                />
+                <p>{amount}</p>
+              </div>
+            ))}
+          </ul>
+          {/* </div> */}
+        </div>
+        <div className="order-card-price">
+          <p>${totalPrice}</p>
+        </div>
       </div>
     </div>
   );

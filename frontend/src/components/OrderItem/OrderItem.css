@@ -46,6 +46,132 @@
   padding: 2rem;
 }
 
+/*  New CSS */
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #fff;
+}
+
+.Food-container {
+  /* color: var(--color-golden); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* width: calc(100%-20%); */
+  /* height: calc(100vh-90px); */
+  height: 100vh;
+  /* background: rgba(255, 255, 255, 0.3); */
+  background: rgba(255, 255, 255, 0.2);
+
+  /* margin: auto 0; */
+  word-break: break-all;
+  border: 1px solid rgba(0, 0, 0, 0.274);
+  width: 90%;
+  /* background-color: #222; */
+  border-radius: 20px;
+}
+
+.bloc-tabs {
+  display: flex;
+  box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  /* backdrop-filter: drop-shadow(4px 4px 10px blue); */
+}
+.tabs {
+  padding: 15px;
+  text-align: center;
+  width: 50%;
+  background: rgba(128, 128, 128, 0.075);
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.274);
+  box-sizing: content-box;
+  position: relative;
+  outline: none;
+  color: #fff;
+}
+.tabs:not(:last-child) {
+  border-right: 1px solid rgba(0, 0, 0, 0.274);
+}
+
+.active-tabs {
+  background: gray;
+  border-bottom: 1px solid transparent;
+  color: black;
+  border-radius: 20px;
+  border-bottom: 2px var(--color-golden) solid;
+}
+
+.active-tabs::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% + 2px);
+  height: 5px;
+  /* background: rgb(88, 147, 241); */
+}
+
+button {
+  border: none;
+  font-size: 1rem;
+}
+.content-tabs {
+  flex-grow: 1;
+}
+.content {
+  /* background: white; */
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background: rgba(255, 255, 255, 0.1);
+  /* background-color: red; */
+  /* box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px); */
+}
+.product-grid-override {
+  /* display: flex; */
+  /* height: auto; */
+  height: 100%;
+  /* background-color: blue; */
+  /* margin-left: 2rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content h2 {
+  padding: 0px 0 5px 0px;
+}
+.content hr {
+  width: 100px;
+  height: 2px;
+  background: #222;
+  margin-bottom: 5px;
+}
+.content p {
+  width: 100%;
+  height: 100%;
+}
+.active-content {
+  display: block;
+}
+
 .order_container {
   /*min-width: 150px;*/
   display: flex;
@@ -60,13 +186,11 @@
   font-size: 1.2rem;
 }
 
-/*  New CSS */
-
 .order-card {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1rem;
   background-color: var(--menu-card-bg);
   border-radius: 34px;
   box-shadow: 0px 6px 16px rgba(43, 8, 37, 0.1);
@@ -76,8 +200,25 @@
   transition: all 0.3s ease-in-out;
   animation: 1s ease-in-out 0s 1 slideInFromTopMenu;
   color: var(--color-golden);
-  margin: 2rem;
+  margin: 2rem auto;
   flex-wrap: wrap;
+}
+.order-container_one {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* width: 40%; */
+  gap: 1rem;
+  width: 45%;
+}
+
+.order-container_two {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  /* width: 40%; */
+  gap: 1rem;
+  width: 50%;
 }
 
 .order-card:hover {
@@ -160,13 +301,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-basis: 100px;
+  flex-grow: 3;
+}
+.order-scrollbar-items li {
+  list-style: square;
+}
+.order-name-list {
+  flex-basis: 1000px;
+  flex-grow: 10;
 }
 
-.cart_container {
+.food_cart_container {
   /* margin-top: 1.5rem; */
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-basis: 300px;
+  flex-grow: 6;
 }
 
 .order-scrollbar-items {
@@ -203,9 +355,101 @@
   justify-content: center;
   align-items: center;
 }
+.dropdown-status {
+  /* // A reset of styles, including removing the default dropdown arrow */
+  appearance: none;
+  /* // Additional resets for further consistency */
+  background-color: white;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+}
+select::-ms-expand {
+  display: none;
+}
 
 @media only screen and (max-width: 1330px) {
   .order-card {
     flex-direction: column;
   }
+  .order-container_one {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* width: 40%; */
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .order-container_two {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* width: 40%; */
+    gap: 1rem;
+    width: 100%;
+  }
+  .food_cart_container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+  .order_items_container {
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 1rem;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .order-card {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+  .order-container_one {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* width: 40%; */
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .order-container_two {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* width: 40%; */
+    gap: 1rem;
+    width: 100%;
+  }
+  .order_items_container {
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-left: 1rem;
+  }
+  .food_cart_container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  /* #nav-toggle:checked + .sidebar {
+    left: 0 !important;
+    z-index: 100;
+    width: 345px;
+  }
+
+  #nav-toggle:checked + .sidebar .sidebar-brand h2 span:last-child,
+  #nav-toggle:checked + .sidebar li a span {
+    display: inline;
+  } */
 }

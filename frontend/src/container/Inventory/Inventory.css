@@ -1,0 +1,170 @@
+/* UnUsed CSS */
+
+/* .main__container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  height: 100vh;
+}
+.create_product {
+  display: flex;
+  gap: 1rem;
+}
+.create_product p {
+  color: var(--color-golden);
+  font-size: 2rem;
+  padding-left: 2.3rem;
+}
+
+.MuiTabs-root {
+   background-color: black; 
+  color: var(--color-golden);
+  /* text-transform: lowercase;
+}
+.MuiTab-labelIcon {
+  color: var(--color-golden);
+}
+.MuiTab-textColorPrimary,
+.Mui-selected {
+  color: var(--color-golden);
+} */
+
+/* Tabs CSS file */
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #fff;
+}
+
+.Food-container {
+  /* color: var(--color-golden); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* width: calc(100%-20%); */
+  /* height: calc(100vh-90px); */
+  height: 100vh;
+  /* background: rgba(255, 255, 255, 0.3); */
+  background: rgba(255, 255, 255, 0.2);
+
+  /* margin: auto 0; */
+  word-break: break-all;
+  border: 1px solid rgba(0, 0, 0, 0.274);
+  width: 90%;
+  /* background-color: #222; */
+  border-radius: 20px;
+}
+
+.bloc-tabs {
+  display: flex;
+  box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  /* backdrop-filter: drop-shadow(4px 4px 10px blue); */
+}
+.tabs {
+  padding: 15px;
+  text-align: center;
+  width: 50%;
+  background: rgba(128, 128, 128, 0.075);
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.274);
+  box-sizing: content-box;
+  position: relative;
+  outline: none;
+  color: #fff;
+}
+.tabs:not(:last-child) {
+  border-right: 1px solid rgba(0, 0, 0, 0.274);
+}
+
+.active-tabs {
+  background: gray;
+  border-bottom: 1px solid transparent;
+  color: #dcca87;
+  font-weight: 700;
+  border-radius: 20px;
+  border-bottom: 2px var(--color-golden) solid;
+}
+
+.active-tabs::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% + 2px);
+  height: 5px;
+  /* background: rgb(88, 147, 241); */
+}
+
+button {
+  border: none;
+  font-size: 1rem;
+}
+.content-tabs {
+  flex-grow: 1;
+}
+.content {
+  /* background: white; */
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  display: none;
+  background: rgba(255, 255, 255, 0.1);
+  /* background-color: red; */
+  /* box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px); */
+}
+.product-grid-override {
+  /* display: flex; */
+  /* height: auto; */
+  height: 100%;
+  /* background-color: blue; */
+  /* margin-left: 2rem; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content h2 {
+  padding: 0px 0 5px 0px;
+}
+.content hr {
+  width: 100px;
+  height: 2px;
+  background: #222;
+  margin-bottom: 5px;
+}
+.content p {
+  width: 100%;
+  height: 100%;
+}
+.active-content {
+  display: block;
+}
+
+/* Scrollbar Css */
+.vtrack {
+  background-color: #dcca87;
+  top: 2px;
+  right: 2px;
+  bottom: 2px;
+  width: 10px;
+}
+
+.vthumb {
+  background-color: #dcca87;
+}

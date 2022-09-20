@@ -1,4 +1,4 @@
-import React from "react";
+import Reac from "react";
 import VerticalNav from "../../components/VerticalNav/VerticalNav";
 import "./Product.css";
 import { CartState } from "../../context/cartItem_context";

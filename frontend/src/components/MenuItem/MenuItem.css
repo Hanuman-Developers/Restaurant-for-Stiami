@@ -85,6 +85,7 @@
   align-self: center;
   transition: all 0.3s ease-in-out;
   filter: var(--image-drop-shadow);
+  background-image: url(../../assets/salad4.png);
 }
 
 .salad-card:hover .salad-card-image {
