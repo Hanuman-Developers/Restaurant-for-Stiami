@@ -36,6 +36,13 @@ import PaymentSuccess from "./container/PaymentSuccess/PaymentSuccess"
 import PaymentFail from "./container/PaymentFail/PaymentFail"
 import Myorders from "./container/Myorders/Myorders"
 import { TableProvider } from "./context/TableContext"
+import { ThemeProvider, createTheme } from "@mui/material/styles"
+
+const darkTheme = createTheme({
+	palette: {
+		mode: "dark",
+	},
+})
 
 const App = () => {
 	const { auth, setAuth } = CartState()
@@ -71,7 +78,7 @@ const App = () => {
 	}, [])
 
 	return (
-		<div>
+		<ThemeProvider theme={darkTheme}>
 			{/* <VerticalNavbar /> */}
 
 			<Routes>
@@ -83,6 +90,7 @@ const App = () => {
 					<Route path='/cart' element={<Cart />} />
 					<Route path='/ordersuccess' element={<OrderSuccess />} />
 					<Route path='/allorders' element={<AllOrders />} />
+					<Route path='/my-orders' element={<Myorders />} />
 				</Route>
 				<Route path='/calendar' element={<Calendar />} />
 				<Route path='/additem' element={<AddFoodItem />} />
@@ -100,12 +108,11 @@ const App = () => {
 						</TableProvider>
 					}
 				/>
-				<Route path='/my-orders' element={<Myorders />} />
 				<Route path='/edit/:id' element={<EditFoodItem />} />
 				<Route path='/paymentSuccess' element={<PaymentSuccess />} />
 				<Route path='/paymentFailed' element={<PaymentFail />} />
 			</Routes>
-		</div>
+		</ThemeProvider>
 	)
 }
 

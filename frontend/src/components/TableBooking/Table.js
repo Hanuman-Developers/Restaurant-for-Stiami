@@ -3,9 +3,11 @@ import axios from "axios"
 import { useTable } from "../../context/TableContext"
 import "./Table.scss"
 import { images } from "../../constants"
+import { CartState } from "../../context/cartItem_context"
 
 const Table = ({ capacity, number, tableid }) => {
 	const { bookedTables, startTimeinMins, endTimeinMins, date } = useTable()
+	const { auth } = CartState()
 
 	const [product, setproduct] = useState({
 		name: `Table number ${number}`,
@@ -13,7 +15,7 @@ const Table = ({ capacity, number, tableid }) => {
 		startTimeinMins: startTimeinMins,
 		endTimeinMins: endTimeinMins,
 		date: date.format("YYYY-MM-DD"),
-		email: "vivek@gmail.com",
+		email: auth,
 	})
 
 	const makePayment = async () => {

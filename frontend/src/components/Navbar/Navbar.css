@@ -45,6 +45,10 @@
   align-items: center;
 }
 
+.app__navbar-login .left__menubtn{
+  margin-right: 8rem;
+}
+
 .app__navbar-login a {
   margin: 0 1rem;
   text-decoration: none;

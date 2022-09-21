@@ -5,6 +5,7 @@ import MenuItem from "./MenuItem/MenuItem"
 import Navbar from "./Navbar/Navbar"
 import Table from "./TableBooking/Table"
 import DateAndTime from "./TableBooking/DateAndTime"
+import AddressDrawer from "./AddressDrawer/AddressDrawer"
 
 export {
 	SubHeading,
@@ -14,4 +15,5 @@ export {
 	Navbar,
 	Table,
 	DateAndTime,
+	AddressDrawer,
 }
