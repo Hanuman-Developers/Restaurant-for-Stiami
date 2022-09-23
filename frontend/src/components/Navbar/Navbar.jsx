@@ -35,7 +35,7 @@ const Navbar = () => {
   const logout = async () => {
     setAuth({});
     // window.open("http://localhost:5000/api/auth/logout", "_self");
-    fetch("http://localhost:5000/api/auth/logout", {
+    fetch("http://stiamivip/api/auth/logout", {
       method: "GET",
       credentials: "include",
       headers: {
