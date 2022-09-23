@@ -23,7 +23,7 @@ const Table = ({ capacity, number, tableid }) => {
 			product: product,
 		}
 
-		fetch("http://localhost:5000/api/payment/tables", {
+		fetch("http://3.86.178.228:5000/api/payment/tables", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(body),
