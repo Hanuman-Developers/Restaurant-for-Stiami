@@ -19,6 +19,7 @@
 
 .app__navbar-logo img {
   width: 150px;
+  height: 100px;
 }
 
 .app__navbar-links {
@@ -45,7 +46,7 @@
   align-items: center;
 }
 
-.app__navbar-login .left__menubtn{
+.app__navbar-login .left__menubtn {
   margin-right: 8rem;
 }
 

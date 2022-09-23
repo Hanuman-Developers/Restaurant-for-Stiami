@@ -1,12 +1,12 @@
-import axios from "axios"
-const BASE_URL = "http://3.86.178.228:5000/api"
+import axios from "axios";
+const BASE_URL = "http://stiamivip.com/api";
 
 export default axios.create({
-	baseURL: BASE_URL,
-})
+  baseURL: BASE_URL,
+});
 
 export const axiosPrivate = axios.create({
-	baseURL: BASE_URL,
-	headers: { "Content-Type": "application/json" },
-	withCredentials: true,
-})
+  baseURL: BASE_URL,
+  headers: { "Content-Type": "application/json" },
+  withCredentials: true,
+});

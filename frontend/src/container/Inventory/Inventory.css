@@ -177,3 +177,12 @@ button {
 .vthumb {
   background-color: #dcca87;
 }
+
+@media screen and (max-width: 850px) {
+  .tabs {
+    width: 95%;
+  }
+  .active-tabs {
+    width: 95%;
+  }
+}

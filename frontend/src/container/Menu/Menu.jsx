@@ -110,7 +110,7 @@ const Menu = () => {
         </div>
         <div className="Menu__item__container">
           <div className="Menu_sub_container">
-            <div className="bloc-tabs">
+            <div className="menu-tabs ">
               <button
                 className={
                   toggleState === 4

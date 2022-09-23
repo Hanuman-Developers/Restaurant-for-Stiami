@@ -52,6 +52,13 @@
   width: 100%;
 }
 
+.menu-tabs {
+  display: flex;
+  box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+  /* backdrop-filter: drop-shadow(4px 4px 10px blue); */
+}
+
 @media screen and (min-width: 2000px) {
   .app__specialMenu-menu_img {
     width: 650px;
@@ -264,5 +271,14 @@
     font-size: 1.8rem;
     cursor: pointer;
     color: #ffdd40;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .menu-tabs {
+    flex-direction: column;
+    align-self: center;
+    justify-content: center;
+    width: 80%;
   }
 }
