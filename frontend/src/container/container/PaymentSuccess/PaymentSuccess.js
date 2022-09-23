@@ -14,7 +14,7 @@ const PaymentSuccess = () => {
 	useEffect(() => {
 		const fetchData = async () => {
 			const response = await axios.get(
-				`http://localhost:5000/api/payment/tables?session_id=${session_id}`
+				`http://3.86.178.228:5000/api/payment/tables?session_id=${session_id}`
 			)
 			if (response.data.success === true) {
 				console.log("Payment Successful")
