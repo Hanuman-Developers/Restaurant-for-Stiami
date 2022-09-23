@@ -133,8 +133,10 @@ const handleTablePayHook = asyncHandler(async (req, res, next) => {
 		removeOrder(session)
 		res.status(402).json({ success: false })
 		return
+	} else {
+		console.log(event.type)
 	}
-	throw new Error("payment failed")
+	res.status(200).end()
 })
 
 const paymentStatus = asyncHandler(async (req, res, next) => {
@@ -152,7 +154,10 @@ const paymentStatus = asyncHandler(async (req, res, next) => {
 	throw new Error("Session not found")
 })
 
-//**************Cart Payment************** */
+//*****************************************Cart Payment********************************************* */
+//*****************************************Cart Payment********************************************* */
+//*****************************************Cart Payment********************************************* */
+//*****************************************Cart Payment********************************************* */
 
 const findProductDetails = expressAsyncHandler(async (productids) => {
 	const docIds = productids.map((id) => mongoose.Types.ObjectId(id))

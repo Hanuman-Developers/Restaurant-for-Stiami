@@ -6,8 +6,10 @@
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
-		"start": "node server",
-		"server": "nodemon server",
+		"start": "node backend/server",
+		"server": "nodemon backend/server",
+		"client": "npm start --prefix frontend",
+		"dev": "concurrently \"npm run server\" \"npm run client\"",
 		"data:import": "node seeder",
 		"data:destroy": "node seeder -d"
 	},
@@ -15,6 +17,7 @@
 		"axios": "^0.27.2",
 		"bcrypt": "^5.0.1",
 		"colors": "^1.4.0",
+		"concurrently": "^7.4.0",
 		"cookie-parser": "^1.4.6",
 		"cookie-session": "^2.0.0",
 		"cors": "^2.8.5",
