@@ -6,6 +6,9 @@ import Product from "../models/product.js"
 import express from "express"
 import axios from "axios"
 import mongoose from "mongoose"
+import dotenv from "dotenv"
+dotenv.config()
+
 const stripe = new Stripe(
 	"sk_test_51Lg3dwKkKO8NA6ZZuy3aaiasmwUwTS8UdiwSBVHHgXadSYdB1sSNbxlOkeQKQFcMy3BF75I1a4Me29WNopDBXnHM00SgoTvDd6"
 )

@@ -29,7 +29,7 @@
 /*  Checkbox false */
 .board {
   margin-left: 20%;
-  transition: margin-left 300ms;
+  transition: all left 300ms;
   background-color: black;
   padding: 1rem;
   min-height: 90vh;
@@ -81,7 +81,7 @@
 @media only screen and (max-width: 1200px) {
   .board {
     margin-left: 120px;
-    transition: all margin-left 300ms;
+    transition: all left 300ms;
     background-color: black;
     padding-left: 4rem;
     padding-right: 1rem;

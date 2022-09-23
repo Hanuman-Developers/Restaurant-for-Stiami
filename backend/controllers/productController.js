@@ -70,4 +70,14 @@ const getAllProducts = asyncHandler(async (req, res) => {
   res.status(200).json(allProducts);
 });
 
-export { createNewProduct, updateProduct, getAllProducts };
+const deleteProduct = asyncHandler(async (req, res) => {
+  console.log(req.body);
+  const product = await Product.find({ name: req.body.name }).lean().exec();
+  console.log(product);
+
+  await Product.remove({ name: req.body.name }).lean().exec();
+
+  return res.status(200).json({ message: "Successfully Deleted product" });
+});
+
+export { createNewProduct, updateProduct, getAllProducts, deleteProduct };

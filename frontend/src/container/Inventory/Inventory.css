@@ -67,7 +67,16 @@ body {
   /* background-color: #222; */
   border-radius: 20px;
 }
-
+.product__add__container {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+}
+.product__add__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .bloc-tabs {
   display: flex;
   box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.3);

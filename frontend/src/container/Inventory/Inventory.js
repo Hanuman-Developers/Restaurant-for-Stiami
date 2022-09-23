@@ -7,7 +7,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import AdminNavbar from "../../components/AdminNavbar/AdminNavbar";
 import { Scrollbars } from "react-custom-scrollbars-2";
 // Material UI
+import { IconContext } from "react-icons";
 
+import { MdOutlineLibraryAdd } from "react-icons/md";
 function Inventory() {
   const { cart, total, clearCart } = CartState();
   const history = useNavigate();
@@ -112,6 +114,22 @@ function Inventory() {
           {/* <div className="Inventory_header">
           <h2>Stiami Products</h2>
         </div> */}
+          <div className="product__add__container">
+            <div className="bloc-tabs">
+              <h1> Want to add new item?</h1>
+            </div>
+            <div
+              className="product__add__button"
+              onClick={() => {
+                history("/additem");
+              }}
+            >
+              <IconContext.Provider value={{ color: "dcca87", size: "40px" }}>
+                <MdOutlineLibraryAdd />
+              </IconContext.Provider>
+            </div>
+          </div>
+
           <div className="Food-container">
             <div className="container">
               <div className="bloc-tabs">
