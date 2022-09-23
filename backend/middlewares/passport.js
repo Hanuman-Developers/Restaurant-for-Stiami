@@ -31,7 +31,6 @@ passport.use(
               email: profile.emails[0].value,
               googleId: profile.id,
               password: "",
-              roles: 2001,
             }).save(function (err, data) {
               return done(null, data);
             });

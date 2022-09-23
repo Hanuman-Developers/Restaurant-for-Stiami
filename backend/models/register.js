@@ -6,9 +6,8 @@ const RegistrationSchema = new mongoose.Schema({
     required: true,
   },
   roles: {
-    User: Number,
-    Editor: Number,
-    Admin: Number,
+    type: Number,
+    default: 2001,
   },
   password: {
     type: String,

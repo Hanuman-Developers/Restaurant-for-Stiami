@@ -4,7 +4,7 @@ import { MdOutlineRestaurantMenu } from "react-icons/md";
 import images from "../../constants/images";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useLocation, useNavigate } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import PeopleAltOutlinedIcon from "@mui/icons-material/PeopleAltOutlined";
 import CalendarMonthOutlinedIcon from "@mui/icons-material/CalendarMonthOutlined";
 import InventoryOutlinedIcon from "@mui/icons-material/InventoryOutlined";
@@ -144,45 +144,45 @@ const Navbar = () => {
         <div className="vertical_sidebar-menu">
           <ul>
             <li>
-              <a href="" className="active">
+              <Link to="/dashboard" clLinkssName="active">
                 {/* <span className="las la-igloo"></span> */}
                 <span className="lab la-stiami"></span>
                 <DashboardCustomizeOutlinedIcon />
 
                 <span>Dashboard</span>
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a href="">
+              <Link to="/dashboard">
                 {/* <span className="las la-users"></span> */}
                 <PeopleAltOutlinedIcon />
                 <span>Customers</span>
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a href="">
+              <Link to="/calendar">
                 {/* <span className="las la-clipboard-list"></span> */}
                 <CalendarMonthOutlinedIcon />
                 <span>Calender</span>
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a href="">
+              <Link to="/inventory">
                 {/* <span className="las la-receipt"></span> */}
                 <InventoryOutlinedIcon />
                 <span>Inventory</span>
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a href="">
+              <Link to="/orderdashboard">
                 {/* <span className="las la-shipping-bag"></span> */}
                 <AssignmentReturnedOutlinedIcon />
                 <span>Orders</span>
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
