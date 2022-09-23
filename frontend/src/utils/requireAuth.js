@@ -1,12 +1,13 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
 import { CartState } from "../context/cartItem_context";
 const RequireAuth = ({ allowedRoles }) => {
-  const { auth } = CartState();
+  const { auth, setAuth } = CartState();
   const location = useLocation();
   const roles = auth.roles;
-  console.log(auth);
+  const loc = localStorage.getItem("auth");
+  console.log(typeof loc);
 
-  console.log(allowedRoles);
+  console.log(typeof allowedRoles);
 
   // return auth.length > 0 ? (
   //   <Outlet />
@@ -33,7 +34,7 @@ const RequireAuth = ({ allowedRoles }) => {
   // ) : (
   //   <Navigate to="/login" state={{ from: location }} replace />
   // );
-  return auth?.roles === allowedRoles ? (
+  return auth?.roles || loc == allowedRoles ? (
     <Outlet />
   ) : auth?.email ? (
     <Navigate to="/unauthorized" state={{ from: location }} replace />

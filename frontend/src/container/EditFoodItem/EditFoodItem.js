@@ -11,7 +11,7 @@ import Input from "../Login/Input";
 import { useParams, useLocation } from "react-router-dom";
 
 function EditFoodItem() {
-  const options = ["Starters", "Main Course", "Dessert"];
+  const options = ["Starters", "Main Course", "Dessert", "Drinks"];
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(false);
   const toggling = () => setIsOpen(!isOpen);

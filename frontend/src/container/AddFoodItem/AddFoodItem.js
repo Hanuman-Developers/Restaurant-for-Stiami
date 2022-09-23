@@ -26,7 +26,7 @@ function reducer(state, action) {
 }
 
 function AddFoodItem() {
-  const options = ["Starters", "Main Course", "Dessert"];
+  const options = ["Starters", "Main Course", "Dessert", "Drinks"];
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -84,58 +84,62 @@ function AddFoodItem() {
       <VerticalNav></VerticalNav>
       <AdminNavbar heading="Create Product" />
       <>
-        <AddItemContainer>
-          <FormContainer>
-            <Header>Add New Item</Header>
-            {/* <form onSubmit={onSubmit}> */}
-            <InputContainer>
-              <Input
-                name="name"
-                type="name"
-                placeholder="FoodItemName"
-                onChange={onChange}
-              />
-              <Input
-                name="price"
-                type="number"
-                placeholder="Price"
-                onChange={onChange}
-              />
-              <Input
-                type="description"
-                name="description"
-                placeholder="description"
-                onChange={onChange}
-              />
-            </InputContainer>
-            <CatergoryContainer>
-              <DropDownContainer>
-                <DropDownHeader onClick={toggling}>
-                  {selectedOption || "Starters"}
-                </DropDownHeader>
-                {isOpen && (
-                  <DropDownListContainer>
-                    <DropDownList>
-                      {options.map((option) => (
-                        <ListItem
-                          onClick={onOptionClicked(option)}
-                          key={Math.random()}
-                        >
-                          {option}
-                        </ListItem>
-                      ))}
-                    </DropDownList>
-                  </DropDownListContainer>
-                )}
-              </DropDownContainer>
-              <TextArea> Category</TextArea>
-            </CatergoryContainer>
-            <ButtonContainer onClick={onSubmit}>
-              <Button content="Create" />
-            </ButtonContainer>
-            {/* </form> */}
-          </FormContainer>
-        </AddItemContainer>
+        <div className="full_bg">
+          <div className="board">
+            <AddItemContainer>
+              <FormContainer>
+                <Header>Add New Item</Header>
+                {/* <form onSubmit={onSubmit}> */}
+                <InputContainer>
+                  <Input
+                    name="name"
+                    type="name"
+                    placeholder="FoodItemName"
+                    onChange={onChange}
+                  />
+                  <Input
+                    name="price"
+                    type="number"
+                    placeholder="Price"
+                    onChange={onChange}
+                  />
+                  <Input
+                    type="description"
+                    name="description"
+                    placeholder="description"
+                    onChange={onChange}
+                  />
+                </InputContainer>
+                <CatergoryContainer>
+                  <DropDownContainer>
+                    <DropDownHeader onClick={toggling}>
+                      {selectedOption || "Starters"}
+                    </DropDownHeader>
+                    {isOpen && (
+                      <DropDownListContainer>
+                        <DropDownList>
+                          {options.map((option) => (
+                            <ListItem
+                              onClick={onOptionClicked(option)}
+                              key={Math.random()}
+                            >
+                              {option}
+                            </ListItem>
+                          ))}
+                        </DropDownList>
+                      </DropDownListContainer>
+                    )}
+                  </DropDownContainer>
+                  <TextArea> Category</TextArea>
+                </CatergoryContainer>
+                <ButtonContainer onClick={onSubmit}>
+                  <Button content="Create" />
+                </ButtonContainer>
+                {/* </form> */}
+              </FormContainer>
+            </AddItemContainer>
+          </div>
+        </div>
       </>
     </>
   );

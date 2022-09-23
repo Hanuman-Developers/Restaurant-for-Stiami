@@ -16,7 +16,7 @@
 
 .full_bg {
   width: 100%;
-  height: calc(100vh - 90px);
+  min-height: calc(100vh - 90px);
   background-image: url(../../../src/assets/bg.png);
   /* padding: 1rem auto; */
   /* padding-left: 4rem; */

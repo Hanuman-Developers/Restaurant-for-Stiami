@@ -70,6 +70,8 @@ const App = () => {
         })
         .then((resObject) => {
           console.log(resObject.user);
+          localStorage.setItem("auth", JSON.stringify(resObject.user.roles));
+
           if (resObject.user.email === undefined) {
             setAuth("");
           } else {

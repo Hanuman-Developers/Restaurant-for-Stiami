@@ -8,6 +8,8 @@ import "./SpecialMenu.css";
 import { CartState } from "../../context/cartItem_context";
 import { Navbar } from "../../components";
 import MenuNavBar from "../../components/MenuNavBar/MenuNavBar.js";
+import { Scrollbars } from "react-custom-scrollbars-2";
+
 const Menu = () => {
   const { cart, total, clearCart } = CartState();
   console.log(cart);
@@ -35,6 +37,9 @@ const Menu = () => {
 
   const get_mainCourse = cart.filter(function (item) {
     return item.category == "Main Course";
+  });
+  const get_drinks = cart.filter(function (item) {
+    return item.category == "Drinks";
   });
 
   return (
@@ -100,50 +105,115 @@ const Menu = () => {
         </div>
       </div> */}
       <div className="Menu__main__container">
+        <div className="Menu__header">
+          <h1>Stiami Menu</h1>
+        </div>
         <div className="Menu__item__container">
           <div className="Menu_sub_container">
             <div className="bloc-tabs">
               <button
-                className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+                className={
+                  toggleState === 4
+                    ? "tabs active-tabs menu_font"
+                    : "tabs menu_font "
+                }
+                onClick={() => toggleTab(4)}
+              >
+                Drinks
+              </button>
+              <button
+                className={
+                  toggleState === 1
+                    ? "tabs active-tabs menu_font"
+                    : "tabs menu_font"
+                }
                 onClick={() => toggleTab(1)}
               >
                 Starter
               </button>
               <button
-                className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+                className={
+                  toggleState === 2
+                    ? "tabs active-tabs menu_font"
+                    : "tabs menu_font"
+                }
                 onClick={() => toggleTab(2)}
               >
                 Main Course
               </button>
               <button
-                className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
+                className={
+                  toggleState === 3
+                    ? "tabs active-tabs menu_font"
+                    : "tabs menu_font"
+                }
                 onClick={() => toggleTab(3)}
               >
-                Desert
+                Dessert
               </button>
             </div>
 
             <div className="content-tabs">
               <div
                 className={
-                  toggleState === 1 ? "content  active-content" : "content"
+                  toggleState === 4 ? "content  active-content" : "content "
                 }
               >
-                <div className="salad-grid-override">
-                  {/* {/* <div className="app__specialMenu_menu_items">  */}
-                  {cart.map((wine) => (
-                    <MenuItem
-                      key={wine.id}
-                      {...wine}
-                      id={wine._id}
-                      title={wine.title}
-                      price={wine.price}
-                      tags={wine.tags}
-                      amount={wine.amount}
-                    />
-                  ))}
-                  {/* {/* </div>  */}
-                </div>
+                {" "}
+                <Scrollbars
+                  style={{
+                    width: "100%",
+                    height: "100vh",
+                  }}
+                >
+                  <div className="salad-grid-override">
+                    {/* {/* <div className="app__specialMenu_menu_items">  */}
+
+                    {get_drinks.map((wine) => (
+                      <MenuItem
+                        key={wine.id}
+                        {...wine}
+                        id={wine._id}
+                        title={wine.title}
+                        price={wine.price}
+                        tags={wine.tags}
+                        amount={wine.amount}
+                      />
+                    ))}
+                    {/* {/* </div>  */}
+                  </div>
+                </Scrollbars>
+              </div>
+
+              <div
+                className={
+                  toggleState === 1 ? "content  active-content" : "content "
+                }
+              >
+                {" "}
+                <Scrollbars
+                  style={{
+                    width: "100%",
+                    height: "100vh",
+                  }}
+                >
+                  <div className="salad-grid-override">
+                    {/* {/* <div className="app__specialMenu_menu_items">  */}
+
+                    {get_starters.map((wine) => (
+                      <MenuItem
+                        key={wine.id}
+                        {...wine}
+                        id={wine._id}
+                        title={wine.title}
+                        price={wine.price}
+                        tags={wine.tags}
+                        amount={wine.amount}
+                      />
+                    ))}
+                    {/* {/* </div>  */}
+                  </div>
+                </Scrollbars>
               </div>
 
               <div
@@ -151,22 +221,29 @@ const Menu = () => {
                   toggleState === 2 ? "content  active-content" : "content"
                 }
               >
-                {/* <h2>Content 2</h2> */}
-                <div className="salad-grid-override">
-                  {/* {/* <div className="app__specialMenu_menu_items">  */}
-                  {cart.map((wine) => (
-                    <MenuItem
-                      key={wine.id}
-                      {...wine}
-                      id={wine._id}
-                      title={wine.title}
-                      price={wine.price}
-                      tags={wine.tags}
-                      amount={wine.amount}
-                    />
-                  ))}
-                  {/* {/* </div>  */}
-                </div>
+                <Scrollbars
+                  style={{
+                    width: "100%",
+                    height: "100vh",
+                  }}
+                >
+                  <div className="salad-grid-override">
+                    {/* {/* <div className="app__specialMenu_menu_items">  */}
+
+                    {get_mainCourse.map((wine) => (
+                      <MenuItem
+                        key={wine.id}
+                        {...wine}
+                        id={wine._id}
+                        title={wine.title}
+                        price={wine.price}
+                        tags={wine.tags}
+                        amount={wine.amount}
+                      />
+                    ))}
+                    {/* {/* </div>  */}
+                  </div>
+                </Scrollbars>
               </div>
 
               <div
@@ -174,17 +251,29 @@ const Menu = () => {
                   toggleState === 3 ? "content  active-content" : "content"
                 }
               >
-                <h2>Content 3</h2>
-                <hr />
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos
-                  sed nostrum rerum laudantium totam unde adipisci incidunt modi
-                  alias! Accusamus in quia odit aspernatur provident et ad vel
-                  distinctio recusandae totam quidem repudiandae omnis veritatis
-                  nostrum laboriosam architecto optio rem, dignissimos
-                  voluptatum beatae aperiam voluptatem atque. Beatae rerum
-                  dolores sunt.
-                </p>
+                <Scrollbars
+                  style={{
+                    width: "100%",
+                    height: "100vh",
+                  }}
+                >
+                  <div className="salad-grid-override">
+                    {/* {/* <div className="app__specialMenu_menu_items">  */}
+
+                    {get_starters.map((wine) => (
+                      <MenuItem
+                        key={wine.id}
+                        {...wine}
+                        id={wine._id}
+                        title={wine.title}
+                        price={wine.price}
+                        tags={wine.tags}
+                        amount={wine.amount}
+                      />
+                    ))}
+                    {/* {/* </div>  */}
+                  </div>
+                </Scrollbars>
               </div>
             </div>
           </div>
