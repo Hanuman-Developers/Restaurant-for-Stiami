@@ -1,3 +1,7 @@
-const allowedOrigins = ["http://localhost:3000", "http://localhost:3001"];
+const allowedOrigins = [
+	"http://localhost:3000",
+	"http://localhost:3001",
+	"http://3.86.178.228",
+]
 
-export default allowedOrigins;
+export default allowedOrigins
