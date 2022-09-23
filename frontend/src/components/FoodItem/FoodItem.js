@@ -12,6 +12,7 @@ import wines from "../../constants/data";
 import { AiFillEdit } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { MdDeleteForever } from "react-icons/md";
+import axios from "../../apis/axios";
 // import Button from "@mui/material/Button";
 
 const FoodItem = ({
@@ -28,6 +29,7 @@ const FoodItem = ({
   const { increase, decrease, toggleAmount } = CartState();
 
   const navigate = useNavigate();
+  const DELETE_URL = `products/`;
 
   const prod = {
     name: name,
@@ -44,8 +46,25 @@ const FoodItem = ({
 
   console.log(amount);
 
-  const EditProduct = () => {
+  const handleCheck = async () => {
     //navigate(`/edit/${title}`, { repalce: true, state: { prod } });
+    console.log("inside handle check");
+    console.log(prod);
+    try {
+      const response = await axios.delete(
+        DELETE_URL,
+        { data: prod },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        }
+      );
+      // setOpen(true);
+      console.log(response.data.json);
+      window.location.reload();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -93,7 +112,7 @@ const FoodItem = ({
               <AiFillEdit />
             </IconContext.Provider>
           </div>
-          <div>
+          <div onClick={handleCheck}>
             <IconContext.Provider value={{ color: "dcca87", size: "25px" }}>
               <MdDeleteForever />
             </IconContext.Provider>
