@@ -21,7 +21,7 @@ function Home() {
       <Header />
       <AboutUs />
       <Chef />
-      <Intro />
+      {/* <Intro /> */}
       <Laurels />
       <Gallery />
       <FindUs />

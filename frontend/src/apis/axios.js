@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://stiamivip.com/api";
+const BASE_URL = "http://3.86.178.228:5000/api";
 
 export default axios.create({
   baseURL: BASE_URL,

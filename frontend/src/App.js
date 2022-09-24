@@ -55,7 +55,7 @@ const App = () => {
 
   useEffect(() => {
     const getUser = () => {
-      fetch("http://localhost:5000/api/auth/login/success", {
+      fetch("http://stiamivip.com:5000/api/auth/login/success", {
         method: "GET",
         credentials: "include",
         headers: {
