@@ -20,6 +20,7 @@ import verifyJWT from "./middlewares/verifyjwt.js"
 import productRoutes from "./routes/ProductRoutes.js"
 import orderRoutes from "./routes/orderRoute.js"
 import paymentRoutes from "./routes/paymentRoutes.js"
+import path from "path"
 import "express-async-errors"
 
 dotenv.config()
@@ -65,6 +66,20 @@ router.use("/payment", paymentRoutes)
 // app.use(notFound);
 // app.use(errorHandler);
 app.use("/api", router)
+
+const __dirname = path.resolve()
+
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static(path.join(__dirname, "/statics/build")))
+
+	app.get("*", (req, res) =>
+		res.sendFile(path.resolve(__dirname, "statics", "build", "index.html"))
+	)
+} else {
+	app.get("/", (req, res) => {
+		res.send("API is running....")
+	})
+}
 
 const PORT = process.env.PORT || 5000
 // our server instance

@@ -10,7 +10,7 @@ import dotenv from "dotenv"
 dotenv.config()
 
 const stripe = new Stripe(
-	"sk_test_51Lg3dwKkKO8NA6ZZuy3aaiasmwUwTS8UdiwSBVHHgXadSYdB1sSNbxlOkeQKQFcMy3BF75I1a4Me29WNopDBXnHM00SgoTvDd6"
+	"sk_test_51Lg3dwKkKO8NA6ZZ41l9k576XEGKrnJGOnhAfFmNoUy4pHE8FXKGLxKaOEBzX25rGp3GFcgLNBfvWvvP0OU9dQKh006yE8QBwT"
 )
 
 const findTableDetails = expressAsyncHandler(async (tableid) => {
@@ -55,8 +55,8 @@ const handleTablePayment = asyncHandler(async (req, res, next) => {
 				email: product.email,
 			},
 			success_url:
-				"http://localhost:3000/paymentSuccess?session_id={CHECKOUT_SESSION_ID}",
-			cancel_url: "http://localhost:3000/paymentFailed",
+				"http://localhost:5000/paymentSuccess?session_id={CHECKOUT_SESSION_ID}",
+			cancel_url: "http://localhost:5000/paymentFailed",
 		})
 		console.log("creating session", session.id)
 		// console.log(session)
@@ -75,18 +75,15 @@ const fulfillOrder = asyncHandler(async (session) => {
 	console.log(table)
 
 	try {
-		const res = await axios.post(
-			"http://localhost:5000/api/bookings/newBooking",
-			{
-				date: date,
-				tableid: tableid,
-				slotStart: startTimeinMins,
-				slotEnd: endTimeinMins,
-				status: "booked",
-				email: email,
-				sessionid: session.id,
-			}
-		)
+		const res = await axios.post("/api/bookings/newBooking", {
+			date: date,
+			tableid: tableid,
+			slotStart: startTimeinMins,
+			slotEnd: endTimeinMins,
+			status: "booked",
+			email: email,
+			sessionid: session.id,
+		})
 		if (res.status === 201) {
 			console.log("Booking successful")
 			return
@@ -260,7 +257,7 @@ const fullfillCartOrder = asyncHandler(async (customer, data) => {
 	)
 
 	try {
-		const res = await axios.post("http://localhost:5000/api/orders", {
+		const res = await axios.post("/api/orders", {
 			userId: customer.metadata.user,
 			customerId: data.customer,
 			paymentIntentId: data.payment_intent,
