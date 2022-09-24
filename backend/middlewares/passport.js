@@ -13,7 +13,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_SLIENT_SECRET,
-      callbackURL: "http://localhost:5000/api/auth/google/callback",
+      callbackURL: "http://stiamivip.com/api/auth/google/callback",
       //   passReqToCallback: true,
     },
     function (accessToken, refreshToken, profile, done) {
