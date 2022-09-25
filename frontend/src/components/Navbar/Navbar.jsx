@@ -35,7 +35,7 @@ const Navbar = () => {
   const logout = async () => {
     setAuth({});
     // window.open("http://localhost:5000/api/auth/logout", "_self");
-    fetch("http://localhost:5000/api/auth/logout", {
+    fetch("http://stiamivip.com/api/auth/logout", {
       method: "GET",
       credentials: "include",
       headers: {
@@ -46,6 +46,8 @@ const Navbar = () => {
     })
       .then((response) => {
         console.log("Logged out");
+        window.localStorage.removeItem("auth");
+
         history("/");
       })
       .catch((err) => {
