@@ -31,7 +31,6 @@ const PaymentSuccess = () => {
 
 	return (
 		<div>
-			<Navbar></Navbar>
 			<div className='payment'>
 				<div className='payment__container'>
 					<div className='payment__container__header'>

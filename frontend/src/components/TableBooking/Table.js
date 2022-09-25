@@ -18,12 +18,17 @@ const Table = ({ capacity, number, tableid }) => {
 		email: auth.email,
 	})
 
+	const fetchUrl =
+		process.env.REACT_APP_NODE_ENV === "development"
+			? "http://localhost:5000/api/payment/tables"
+			: "/api/payment/tables"
+
 	const makePayment = async () => {
 		const body = {
 			product: product,
 		}
 
-		fetch("/api/payment/tables", {
+		fetch(fetchUrl, {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify(body),

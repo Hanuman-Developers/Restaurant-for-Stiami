@@ -11,6 +11,11 @@ import axios from "axios"
 export default function AddressDrawer() {
 	const { cart, addressLine1, addressLine2, pincode, auth } = CartState()
 
+	const fetchUrl =
+		process.env.REACT_APP_NODE_ENV === "development"
+			? "http://localhost:5000/api"
+			: "/api"
+
 	const handleAddressForm = async () => {
 		if (
 			addressLine1.current.value === "" ||
@@ -26,10 +31,10 @@ export default function AddressDrawer() {
 			pincode.current.value
 		)
 
-    if(cart.length === 0) {
-      alert("Cart is empty")
-      return
-    }
+		if (cart.length === 0) {
+			alert("Cart is empty")
+			return
+		}
 
 		const result = cart.filter((item) => item.amount > 0)
 		// console.log(result)
@@ -48,11 +53,11 @@ export default function AddressDrawer() {
 			addressLine2: addressLine2.current.value,
 			pincode: pincode.current.value,
 			cartItems: cartItems,
-			user: auth,
+			user: auth.email,
 		}
 
 		try {
-			fetch("http://localhost:5000/api/payment/cart", {
+			fetch(`${fetchUrl}/payment/cart`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(body),

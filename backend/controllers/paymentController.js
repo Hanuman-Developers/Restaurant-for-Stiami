@@ -13,6 +13,9 @@ const stripe = new Stripe(
 	"sk_test_51Lg3dwKkKO8NA6ZZ41l9k576XEGKrnJGOnhAfFmNoUy4pHE8FXKGLxKaOEBzX25rGp3GFcgLNBfvWvvP0OU9dQKh006yE8QBwT"
 )
 
+const fetchUrl =
+	process.env.NODE_ENV === "development" ? "http://localhost:5000/api" : "/api"
+
 const findTableDetails = expressAsyncHandler(async (tableid) => {
 	try {
 		const table = await Table.findById(tableid)
@@ -54,9 +57,8 @@ const handleTablePayment = asyncHandler(async (req, res, next) => {
 				endTimeinMins: product.endTimeinMins,
 				email: product.email,
 			},
-			success_url:
-				"http://localhost:5000/paymentSuccess?session_id={CHECKOUT_SESSION_ID}",
-			cancel_url: "http://localhost:5000/paymentFailed",
+			success_url: `${process.env.CLIENT_URL}paymentSuccess?session_id={CHECKOUT_SESSION_ID}`,
+			cancel_url: `${process.env.CLIENT_URL}paymentFailed`,
 		})
 		console.log("creating session", session.id)
 		// console.log(session)
@@ -75,7 +77,7 @@ const fulfillOrder = asyncHandler(async (session) => {
 	console.log(table)
 
 	try {
-		const res = await axios.post("/api/bookings/newBooking", {
+		const res = await axios.post(`${fetchUrl}/bookings/newBooking`, {
 			date: date,
 			tableid: tableid,
 			slotStart: startTimeinMins,
@@ -257,7 +259,7 @@ const fullfillCartOrder = asyncHandler(async (customer, data) => {
 	)
 
 	try {
-		const res = await axios.post("/api/orders", {
+		const res = await axios.post(`${fetchUrl}/orders`, {
 			userId: customer.metadata.user,
 			customerId: data.customer,
 			paymentIntentId: data.payment_intent,

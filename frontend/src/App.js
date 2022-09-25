@@ -98,42 +98,41 @@ const App = () => {
 	return (
 		<ThemeProvider theme={darkTheme}>
 			{/* <VerticalNavbar /> */}
+				<Routes>
+					<Route path='/' element={<Layout_ />}>
+						<Route path='/' element={<Home />} />
+						<Route path='/login' element={<Login />} />
+						<Route path='/menu' element={<Menu />} />
 
-			<Routes>
-				<Route path='/' element={<Layout_ />}>
-					<Route path='/' element={<Home />} />
-					<Route path='/login' element={<Login />} />
-					<Route path='/menu' element={<Menu />} />
-
-					<Route element={<RequireAuth allowedRoles={ROLES.User} />}>
-						<Route path='/cart' element={<Cart />} />
-						<Route path='/ordersuccess' element={<OrderSuccess />} />
-						<Route path='/allorders' element={<AllOrders />} />
-						<Route path='/my-orders' element={<Myorders />} />
-						<Route path='/paymentSuccess' element={<PaymentSuccess />} />
-						<Route path='/paymentFailed' element={<PaymentFail />} />
+						<Route element={<RequireAuth allowedRoles={ROLES.User} />}>
+							<Route path='/cart' element={<Cart />} />
+							<Route path='/ordersuccess' element={<OrderSuccess />} />
+							<Route path='/allorders' element={<AllOrders />} />
+							<Route path='/my-orders' element={<Myorders />} />
+							<Route path='/paymentSuccess' element={<PaymentSuccess />} />
+							<Route path='/paymentFailed' element={<PaymentFail />} />
+						</Route>
 					</Route>
-				</Route>
 
-				<Route element={<RequireAuth allowedRoles={ROLES.Admin} />}>
-					<Route path='/dashboard' element={<Dashboard />} />
-					<Route path='/calendar' element={<Calendar />} />
-					<Route path='/additem' element={<AddFoodItem />} />
-					<Route path='/orderdashboard' element={<AdminOrderDashboard />} />
-					<Route path='/inventory' element={<Inventory />} />
-					<Route path='/edit/:id' element={<EditFoodItem />} />
-					<Route path='/product' element={<Product />} />
-				</Route>
+					<Route element={<RequireAuth allowedRoles={ROLES.Admin} />}>
+						<Route path='/dashboard' element={<Dashboard />} />
+						<Route path='/calendar' element={<Calendar />} />
+						<Route path='/additem' element={<AddFoodItem />} />
+						<Route path='/orderdashboard' element={<AdminOrderDashboard />} />
+						<Route path='/inventory' element={<Inventory />} />
+						<Route path='/edit/:id' element={<EditFoodItem />} />
+						<Route path='/product' element={<Product />} />
+					</Route>
 
-				<Route
-					path='/tables'
-					element={
-						<TableProvider>
-							<TableBook />
-						</TableProvider>
-					}
-				/>
-			</Routes>
+					<Route
+						path='/tables'
+						element={
+							<TableProvider>
+								<TableBook />
+							</TableProvider>
+						}
+					/>
+				</Routes>
 		</ThemeProvider>
 	)
 }
