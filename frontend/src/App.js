@@ -53,9 +53,14 @@ const ROLES = {
 const App = () => {
 	const { auth, setAuth } = CartState()
 
+	const fetchUrl =
+		process.env.REACT_APP_NODE_ENV === "development"
+			? "http://localhost:5000/api/auth/login/success"
+			: "http://stiamivip.com/api/auth/login/success"
+
 	useEffect(() => {
 		const getUser = () => {
-			fetch("http://stiamivip.com/api/auth/login/success", {
+			fetch(fetchUrl, {
 				method: "GET",
 				credentials: "include",
 				headers: {

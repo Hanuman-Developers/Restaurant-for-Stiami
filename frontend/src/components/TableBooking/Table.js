@@ -15,7 +15,7 @@ const Table = ({ capacity, number, tableid }) => {
 		startTimeinMins: startTimeinMins,
 		endTimeinMins: endTimeinMins,
 		date: date.format("YYYY-MM-DD"),
-		email: auth,
+		email: auth.email,
 	})
 
 	const makePayment = async () => {

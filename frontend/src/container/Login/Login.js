@@ -19,7 +19,13 @@ function App() {
 	const GoogleBackground = "linear-gradient(to right, #f7c205 0%, #eed579 100%)"
 
 	const google = () => {
-		window.open("http://stiamivip.com/api/auth/google", "_self")
+		// window.open("http://stiamivip.com/api/auth/google", "_self")
+		const fetchUrl =
+			process.env.REACT_APP_NODE_ENV === "development"
+				? "http://localhost:5000/api/auth/google"
+				: "http://stiamivip.com/api/auth/google"
+
+		window.open(fetchUrl, "_self")
 	}
 	return (
 		<>

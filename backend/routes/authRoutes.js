@@ -18,8 +18,8 @@ router.get("/login/success", loginSuccess);
 router.get("/logout", logOut);
 
 router.get(
-  "/google",
-  passport.authenticate("google", { scope: ["email", "profile"] })
+  "/google",passport.authenticate("google", { scope: ["email", "profile"] }
+  )
 );
 router.get(
   "/google/callback",
