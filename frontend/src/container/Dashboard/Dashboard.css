@@ -24,20 +24,29 @@
   /* background-color: red; */
 
   /* z-index: 900; */
+
+  /* background: linear-gradient(90deg, #0c0c0c 0, #f3cd46 90%);
+  padding: 4.5rem;
+  margin: 0; */
 }
 
 /*  Checkbox false */
 .board {
   margin-left: 20%;
   transition: all left 300ms;
-  background-color: black;
   padding: 1rem;
   min-height: 90vh;
-  background-color: rgba(223, 215, 215, 0.808);
   min-width: calc(100vh - 90px);
+
+  background-color: black;
+  background-color: rgba(223, 215, 215, 0.808);
   background-image: url(../../../src/assets/bg.png);
   background-repeat: no-repeat;
   background-size: auto;
+
+  /* background: linear-gradient(90deg, #f3cd46, #0c0c0c 0, 90%);
+  padding: 4.5rem;
+  margin: 0; */
 }
 /*  Checkbox True */
 

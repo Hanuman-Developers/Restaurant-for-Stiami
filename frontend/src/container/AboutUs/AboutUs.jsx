@@ -9,7 +9,7 @@ const AboutUs = () => (
     id="about"
   >
     <div className="app__aboutus-overlay flex__center">
-      <img src={images.G} alt="G_overlay" />
+      {/* <img src={images.initials} alt="G_overlay" /> */}
     </div>
 
     <div className="app__aboutus-content flex__center">
@@ -25,17 +25,16 @@ const AboutUs = () => (
         </button>
       </div>
 
-      <div className="app__aboutus-content_knife flex__center">
+      {/* <div className="app__aboutus-content_knife flex__center">
         <img src={images.knife} alt="about_knife" />
-      </div>
+      </div> */}
 
       <div className="app__aboutus-content_history">
         <h1 className="headtext__cormorant">Our History</h1>
         <img src={images.spoon} alt="about_spoon" className="spoon__img" />
         <p className="p__opensans">
-          Adipiscing tempus ullamcorper lobortis odio tellus arcu volutpat.
-          Risus placerat morbi volutpat habitasse interdum mi aliquam In sed
-          odio nec aliquet.
+          With our members and our community, and family at our core, we live
+          with Rich values:
         </p>
         <button type="button" className="custom__button">
           Know More

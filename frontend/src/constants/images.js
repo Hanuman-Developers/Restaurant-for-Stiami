@@ -31,6 +31,8 @@ import plus from "../assets/plus.png";
 import fourseat from "../assets/tables/fourseat.png";
 import twoseat from "../assets/tables/twoseat.png";
 import stiami from "../assets/Stiami.jpg";
+import logobg from "../assets/logobg.png";
+import initials from "../assets/initials.png";
 
 export default {
   bg,
@@ -66,4 +68,6 @@ export default {
   fourseat,
   twoseat,
   stiami,
+  logobg,
+  initials,
 };

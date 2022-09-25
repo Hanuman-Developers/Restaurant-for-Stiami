@@ -1,42 +1,159 @@
 .app__laurels_awards {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
 
-    margin-top: 3rem;
+  margin-top: 3rem;
 }
 
 .app__laurels_awards-card {
-    flex: 1;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    min-width: 230px;
+  flex: 1;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  min-width: 230px;
 
-    margin: 1rem;
+  margin: 1rem;
 }
 
 @media screen and (min-width: 1900px) {
-    .app__laurels_awards-card {
-        min-width: 390px;
-    }
+  .app__laurels_awards-card {
+    min-width: 390px;
+  }
 }
 
 .app__laurels_awards-card img {
-    width: 50px;
-    height: 50px;
+  width: 50px;
+  height: 50px;
 }
 
 .app__laurels_awards-card_content {
-    display: flex;
-    flex-direction: column;
-    margin-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
 }
 
 @media screen and (max-width: 450px) {
-    .app__laurels_awards-card {
-        min-width: 100%;
-        margin: 1rem 0;
-    }
+  .app__laurels_awards-card {
+    min-width: 100%;
+    margin: 1rem 0;
+  }
+}
+
+/* New CSS */
+
+.membership_cards {
+  display: -webkit-flex;
+  display: -moz-flex;
+
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(90deg, #0c0c0c 0, #f3cd46 90%);
+  /* padding: 4.5rem; */
+  padding: 1rem;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.wrapper {
+  min-width: 90%;
+  display: grid;
+  grid-auto-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+  min-height: 95vh;
+  background: linear-gradient(-90deg, #0c0c0c 0, #f3cd46 90%);
+}
+.box {
+  padding: 1rem;
+  min-height: 95vh;
+}
+.box ul {
+  list-style: square;
+}
+
+.box {
+  width: 90%;
+  height: 400px;
+  border-radius: 15px;
+  transition: transform 500ms ease-out;
+  overflow: hidden;
+  color: black;
+  padding: 5%;
+  text-align: center;
+  margin-bottom: 1rem;
+  /* background: linear-gradient(-90deg, #0c0c0c 0, #f3cd46 90%); */
+  /* display: grid;
+  grid-auto-columns: repeat(3, 1fr);
+  grid-gap: 30px; */
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blue(30px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.box h2 {
+  font-size: 35px;
+  margin-bottom: 30px;
+  color: black;
+  font-family: var(--font-base);
+}
+.box__header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.box__header__logo {
+  width: 150px;
+  height: 100px;
+  justify-content: flex-start;
+  align-items: center;
+}
+.box ul li {
+  line-height: 1.9;
+  color: black;
+}
+
+.box ul {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  list-style: url("../../assets/list_icon.png");
+  font-family: var(--font-alt);
+}
+
+.box a {
+  border: none;
+  background: black;
+  padding: 15px 50px;
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 50px;
+  color: white;
+}
+
+.box:before {
+  content: "";
+  background: rgba(255, 255, 255, 0.3);
+  width: 90%;
+  height: 100%;
+  top: 0%;
+  left: -125%;
+  transform: skew(45deg);
+  position: absolute;
+  animation-direction: left;
+  transition-duration: 500ms;
+}
+
+.box:hover {
+  transform: translateY(-5%);
+}
+
+.box:hover:before {
+  left: 150%;
 }
