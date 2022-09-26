@@ -99,14 +99,12 @@ const removeOrder = (session) => {
 	console.log("Error", session.failure_message)
 }
 
-const endPointSecret =
-	"whsec_efa983bb23b9f3dccb53d015aa4494a5b96391fa1066721a1ae8d73c47ee554a"
-
 const handleTablePayHook = asyncHandler(async (req, res, next) => {
 	const payload = req.body
 	console.log(payload)
 	const sig = req.headers["stripe-signature"]
 
+	const endPointSecret = "whsec_wOgO4mVFZJsoSDJVMwqTIpmPwS9LKEdo"
 	let event
 
 	try {
@@ -282,6 +280,8 @@ const handleCartPayHook = asyncHandler(async (req, res, next) => {
 	const payload = req.body
 	console.log(payload)
 	const sig = req.headers["stripe-signature"]
+
+	const endPointSecret = "whsec_Q6S60uVVh9iazj14a4YDlAMoz9thLwD3"
 
 	let event
 
