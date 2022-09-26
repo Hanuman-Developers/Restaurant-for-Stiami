@@ -5,7 +5,7 @@ const fetchUrl =
 		? "http://localhost:5000/api/"
 		: "/api"
 
-const BASE_URL = "/api/"
+const BASE_URL = fetchUrl
 
 export default axios.create({
 	baseURL: BASE_URL,

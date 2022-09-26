@@ -16,7 +16,7 @@ const Myorders = () => {
 			: "/api"
 
 	const fetchMyOrders = async () => {
-		const url = `/api/orders/myOrders`
+		const url = `${fetchUrl}/orders/myOrders`
 		const params = {
 			email: auth.email,
 		}
