@@ -57,7 +57,7 @@ export default function AddressDrawer() {
 		}
 
 		try {
-			fetch(`${fetchUrl}/payment/cart`, {
+			fetch(`/api/payment/cart`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify(body),

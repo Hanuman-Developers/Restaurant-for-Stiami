@@ -13,9 +13,7 @@ const PaymentSuccess = () => {
 
 	useEffect(() => {
 		const fetchData = async () => {
-			const response = await axios.get(
-				`http://localhost:5000/api/payment?session_id=${session_id}`
-			)
+			const response = await axios.get(`/api/payment?session_id=${session_id}`)
 			if (response.data.success === true) {
 				console.log("Payment Successful")
 				setLoading(false)

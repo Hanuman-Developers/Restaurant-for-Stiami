@@ -6,7 +6,7 @@ const fetchUrl =
 		: "/api"
 
 const getAllTables = async () => {
-	const res = await axios.get(`${fetchUrl}/tables`)
+	const res = await axios.get(`/api/tables`)
 	return res
 }
 
