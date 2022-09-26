@@ -14,7 +14,9 @@ const stripe = new Stripe(
 )
 
 const fetchUrl =
-	process.env.NODE_ENV === "development" ? "http://localhost:5000/api" : "/api"
+	process.env.NODE_ENV === "development"
+		? "http://localhost:5000/api"
+		: "http://localhost:5000/api"
 
 const findTableDetails = expressAsyncHandler(async (tableid) => {
 	try {
