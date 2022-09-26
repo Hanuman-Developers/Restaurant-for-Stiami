@@ -219,9 +219,8 @@ const handleCartPayment = asyncHandler(async (req, res, next) => {
 				user: user,
 			},
 			customer: customer.id,
-			success_url:
-				"http://localhost:3000/paymentSuccess?session_id={CHECKOUT_SESSION_ID}",
-			cancel_url: "http://localhost:3000/paymentFailed",
+			success_url: `${process.env.CLIENT_URL}paymentSuccess?session_id={CHECKOUT_SESSION_ID}`,
+			cancel_url: `${process.env.CLIENT_URL}paymentFailed`,
 		})
 		console.log("creating session", session.id)
 		// console.log(session)
