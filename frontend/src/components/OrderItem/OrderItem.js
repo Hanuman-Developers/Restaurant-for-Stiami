@@ -90,7 +90,7 @@ const OrderItem = ({ _id, user, orderItems, totalPrice, isPaid }) => {
                 <option className="select-status">Order Status </option>
                 {isDisabled ? (
                   <option disabled value="Accepted">
-                    d Accepted
+                    Accepted
                   </option>
                 ) : (
                   <option value="Accepted">Accepted</option>

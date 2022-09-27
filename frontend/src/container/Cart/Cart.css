@@ -1,24 +1,46 @@
 .cart {
-  min-height: calc(100vh - 120px);
+  /* min-height: calc(100vh - 120px); */
+  min-height: 100vh;
+  width: 100%;
+
   margin: 0;
   padding: 1rem 0;
-  max-width: var(--fixed-width);
-  background-color: var(--color-lighter-dark);
+
   color: var(--color-white);
   font-family: var(--font-alt);
-  display: flex;
-  min-height: 100vh;
+  /* display: flex; */
+  background-image: url(../../../src/assets/bg.png);
+  background-repeat: no-repeat;
+  background-size: auto;
+  padding-top: 4rem;
+
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
 }
 
-.cart__container {
-  padding: 0 2rem 0 2rem;
-  width: 60%;
-}
+/* display: flex; */
+/* background-image: url(../../../src/assets/bg.png); */
+/* background-repeat: no-repeat; */
+/* background-size: auto; */
+
 .cart h2 {
   font-family: var(--font-base);
   text-align: center;
   margin-bottom: 1rem;
   font-size: 4rem;
+}
+
+.cart__main__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0rem 4rem 2rem 4rem;
+  background: rgba(255, 255, 255, 0.2);
+  /* background-color: white; */
+  backdrop-filter: blue(30px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(243, 205, 70, 1);
 }
 .empty-cart {
   text-transform: lowercase;
@@ -31,19 +53,22 @@
   text-align: center;
 }
 .cart-total h4 {
-  font-family: var(--font-base);
-  border-top: 1px rgb(207, 210, 207, 0.1) solid;
+  font-family: var(--font-alt);
+  border-top: 1px rgba(207, 210, 207, 0.944) solid;
   text-transform: capitalize;
   display: flex;
+  font-weight: 500;
   justify-content: space-between;
-  font-size: 2rem;
+  font-size: 1.3rem;
+  padding-top: 0.3rem;
 }
 .clear-btn {
   background: transparent;
-  padding: 0.5rem 1rem;
-  color: var(--clr-red-dark);
+  /* padding: 0.5rem 1rem; */
+  color: wheat;
+  padding: 0rem 0rem 1rem 1rem;
   border: 1px solid var(--clr-red-dark);
-  margin-top: 2.25rem;
+  /* margin-top: 2.25rem; */
   border-radius: var(--radius);
 }
 .clear-btn:hover {
@@ -98,3 +123,5 @@
 .button_checkout {
   text-align: center;
 }
+
+/* New CSS */

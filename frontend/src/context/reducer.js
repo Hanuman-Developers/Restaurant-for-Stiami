@@ -5,7 +5,7 @@ export const cartReducer = (state, action) => {
   if (action.type === "REMOVE") {
     return {
       ...state,
-      cart: state.cart.filter((cartItem) => cartItem.id !== action.payload),
+      cart: state.cart.filter((cartItem) => cartItem._id !== action.payload),
     };
   }
   if (action.type === "INCREASE") {

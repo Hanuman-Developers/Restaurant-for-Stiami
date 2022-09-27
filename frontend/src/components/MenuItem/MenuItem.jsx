@@ -10,7 +10,7 @@ import salad4 from "../../constants/images";
 import { MdAddChart } from "react-icons/md";
 import wines from "../../constants/data";
 
-const MenuItem = ({ id, title, name, price, tags, amount }) => {
+const MenuItem = ({ id, title, name, price, tags, amount, description }) => {
   const [add, setAdd] = useState(true);
   const { increase, decrease, toggleAmount } = CartState();
 
@@ -23,7 +23,7 @@ const MenuItem = ({ id, title, name, price, tags, amount }) => {
   //const { remove, increase, decrease, toggleAmount } = useGlobalContext();
   const { cart, dispatch } = CartState();
 
-  let stock = 5;
+  // let stock = 5;
 
   /*const increase = () => {
     setAmount((oldAmount) => {
@@ -119,26 +119,35 @@ const MenuItem = ({ id, title, name, price, tags, amount }) => {
     //   </div>
     // </div>
     <div className="salad-card" style={{ animation: `0.17s` }}>
-      <img class="salad-card-image" src={images.salad1} alt={title}></img>
-      <h2 className="salad-card-name">{name} </h2>
-      <p className="salad-card-price">${price}</p>
-      <div className="cart_container">
-        <button className="salad-card-add-to-cart">
-          <img
-            class="salad-card-plus-icon"
-            src={images.substract}
-            onClick={() => toggleAmount(id, "dec")}
-          />
-        </button>
-        <div>
-          <p>{amount}</p>
+      <div className="salad-card-details">
+        <div className="salad-card-text-container">
+          <h5 className="salad-card-name">{name} </h5>
+          <h4 className="salad-card-price">$ {price}</h4>
+          <h4 className="salad-card-description"> {description}</h4>
         </div>
-        <button
-          className="salad-card-add-to-cart"
-          onClick={() => toggleAmount(id, "inc")}
-        >
-          <img class="salad-card-plus-icon" src={images.plus} />
-        </button>
+        <div className="salad-visual-container">
+          <div class="salad-card-image-container">
+            <img class="salad-card-image" src={images.salad1} alt={title}></img>
+          </div>
+          <div className="cart_container">
+            <button className="salad-card-add-to-cart">
+              <img
+                class="salad-card-plus-icon"
+                src={images.substract}
+                onClick={() => toggleAmount(id, "dec")}
+              />
+            </button>
+            <div class="salad-card-amount">
+              <h5>{amount}</h5>
+            </div>
+            <button
+              className="salad-card-add-to-cart"
+              onClick={() => toggleAmount(id, "inc")}
+            >
+              <img class="salad-card-plus-icon" src={images.plus} />
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

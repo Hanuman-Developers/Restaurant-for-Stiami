@@ -80,13 +80,21 @@ body {
 .bloc-tabs {
   display: flex;
   box-shadow: 0rem 1rem 2rem rgba(0, 0, 0, 0.3);
+  /* flex-direction: column; */
   backdrop-filter: blur(4px);
+  /* width: 100%; */
   /* backdrop-filter: drop-shadow(4px 4px 10px blue); */
+  justify-content: flex-start;
+  align-items: center;
 }
+/* .bloc-button-container {
+  width: 100%;
+  margin: 0;
+} */
 .tabs {
-  padding: 15px;
+  /* padding: 15px; */
   text-align: center;
-  width: 50%;
+  width: 80%;
   background: rgba(128, 128, 128, 0.075);
   cursor: pointer;
   border-bottom: 1px solid rgba(0, 0, 0, 0.274);

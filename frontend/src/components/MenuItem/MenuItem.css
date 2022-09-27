@@ -44,9 +44,13 @@
 .cart_container {
   /*min-width: 150px;*/
   display: flex;
+
   flex-wrap: row wrap;
-  justify-content: center;
+  justify-content: flex-end;
+  align-items: center;
   gap: 0.7rem;
+  width: 100%;
+  /* margin-right: 0.6rem; */
 }
 
 .cart_container p {
@@ -59,20 +63,52 @@
 
 .salad-card {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   gap: 11px;
   background-color: var(--menu-card-bg);
-  border-radius: 34px;
+  border-radius: 15px;
   box-shadow: 0px 6px 16px rgba(43, 8, 37, 0.1);
   width: 100%;
   height: 100%;
-  padding: 18px 32px;
+  padding: 18px 18px;
   transition: all 0.3s ease-in-out;
   animation: 1s ease-in-out 0s 1 slideInFromTopMenu;
   color: var(--color-golden);
   overflow-x: "auto";
   overflow-y: "auto";
+}
+
+.salad-card-details {
+  display: flex;
+  flex-grow: 2;
+  flex-basis: 40%;
+}
+
+.salad-card-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.5rem;
+  flex-grow: 3;
+  flex-basis: 70%;
+}
+.salad-card-name {
+  font-size: 1rem;
+  /* color: red; */
+  font-weight: 500;
+  color: wheat;
+}
+
+.salad-card-image-container {
+  flex-grow: 1;
+  flex-basis: 5%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  /* margin: 1rem; */
+  /* margin-left: 1rem; */
 }
 
 .salad-card:hover {
@@ -81,8 +117,19 @@
   filter: brightness(1.01);
 }
 
+.salad-visual-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 1;
+  flex-basis: 20%;
+}
+
 .salad-card-image {
-  width: 65%;
+  width: 50%;
+  /* margin-right: 0.rem; */
   height: auto;
   align-self: center;
   transition: all 0.3s ease-in-out;
@@ -100,7 +147,19 @@
 
 .salad-card-price {
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 0.8rem;
+}
+
+.salad-card-amount {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.salad-card-description {
+  font-size: 0.8rem;
+  color: white;
+  font-weight: 100;
 }
 
 .salad-card-add-to-cart {
@@ -108,8 +167,8 @@
   align-items: center;
   justify-content: center;
   background-color: var(--color-golden);
-  width: 46px;
-  height: 46px;
+  width: 23px;
+  height: 23px;
   border-radius: 50%;
   align-self: center;
   transition: all 0.2s ease-in-out;

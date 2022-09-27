@@ -108,15 +108,15 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/menu" element={<Menu />} />
 
-          <Route element={<RequireAuth allowedRoles={ROLES.User} />}>
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/ordersuccess" element={<OrderSuccess />} />
-            <Route path="/allorders" element={<AllOrders />} />
-            <Route path="/my-orders" element={<Myorders />} />
-            <Route path="/paymentSuccess" element={<PaymentSuccess />} />
-            <Route path="/paymentFailed" element={<PaymentFail />} />
-          </Route>
+          {/* <Route element={<RequireAuth allowedRoles={ROLES.User} />}> */}
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/ordersuccess" element={<OrderSuccess />} />
+          <Route path="/allorders" element={<AllOrders />} />
+          <Route path="/my-orders" element={<Myorders />} />
+          <Route path="/paymentSuccess" element={<PaymentSuccess />} />
+          <Route path="/paymentFailed" element={<PaymentFail />} />
         </Route>
+        {/* </Route> */}
 
         {/* <Route element={<RequireAuth allowedRoles={ROLES.Admin} />}> */}
         <Route path="/dashboard" element={<Dashboard />} />

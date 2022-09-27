@@ -1,7 +1,8 @@
 import { React, useState } from "react";
 import { NavLink } from "react-router-dom";
 import VerticalNav from "../../components/VerticalNav/VerticalNav";
-
+import CartItem from "../../components/CartItem/CartItem";
+import AddressDrawer from "../../components/AddressDrawer/AddressDrawer";
 import { SubHeading, MenuItem } from "../../components";
 import { data, images } from "../../constants";
 import "./SpecialMenu.css";
@@ -11,7 +12,7 @@ import MenuNavBar from "../../components/MenuNavBar/MenuNavBar.js";
 import { Scrollbars } from "react-custom-scrollbars-2";
 
 const Menu = () => {
-  const { cart, total, clearCart } = CartState();
+  const { cart, total, amount, clearCart } = CartState();
   console.log(cart);
 
   const [value, setValue] = useState(0);
@@ -105,177 +106,213 @@ const Menu = () => {
         </div>
       </div> */}
       <div className="Menu__main__container">
-        <div className="Menu__header">
-          <h1>Stiami Menu</h1>
+        <div className="Menu__container__left">
+          <div className="Menu__header">
+            <h1>Stiami Menu</h1>
+          </div>
+          <div className="Menu__item__container">
+            <div className="Menu_sub_container">
+              <div className="bloc-menu-tabs ">
+                <div className="bloc-menu-tabs-button">
+                  <button
+                    className={
+                      toggleState === 4
+                        ? "menu-tabs active-menu-tabs menu_font"
+                        : "menu-tabs menu_font "
+                    }
+                    onClick={() => toggleTab(4)}
+                  >
+                    Drinks
+                  </button>
+
+                  <button
+                    className={
+                      toggleState === 1
+                        ? "menu-tabs active-menu-tabs menu_font"
+                        : "menu-tabs menu_font"
+                    }
+                    onClick={() => toggleTab(1)}
+                  >
+                    Starter
+                  </button>
+                  <button
+                    className={
+                      toggleState === 2
+                        ? "menu-tabs active-menu-tabs menu_font"
+                        : "menu-tabs menu_font"
+                    }
+                    onClick={() => toggleTab(2)}
+                  >
+                    Main Course
+                  </button>
+                  <button
+                    className={
+                      toggleState === 3
+                        ? "menu-tabs active-menu-tabs menu_font"
+                        : "menu-tabs menu_font"
+                    }
+                    onClick={() => toggleTab(3)}
+                  >
+                    Dessert
+                  </button>
+                </div>
+                {/* <div className="bloc-menu-tabs-vr-line">
+                <hr></hr>
+              </div> */}
+              </div>
+
+              <div className="content-tabs">
+                <div
+                  className={
+                    toggleState === 4 ? "content  active-content" : "content "
+                  }
+                >
+                  {" "}
+                  <Scrollbars
+                    style={{
+                      width: "100%",
+                      height: "100vh",
+                    }}
+                  >
+                    <div className="salad-grid-override">
+                      {/* {/* <div className="app__specialMenu_menu_items">  */}
+
+                      {get_drinks.map((wine) => (
+                        <MenuItem
+                          key={wine.id}
+                          {...wine}
+                          id={wine._id}
+                          title={wine.title}
+                          price={wine.price}
+                          tags={wine.tags}
+                          amount={wine.amount}
+                          description={wine.description}
+                        />
+                      ))}
+                      {/* {/* </div>  */}
+                    </div>
+                  </Scrollbars>
+                </div>
+
+                <div
+                  className={
+                    toggleState === 1 ? "content  active-content" : "content "
+                  }
+                >
+                  {" "}
+                  <Scrollbars
+                    style={{
+                      width: "100%",
+                      height: "100vh",
+                    }}
+                  >
+                    <div className="salad-grid-override">
+                      {/* {/* <div className="app__specialMenu_menu_items">  */}
+
+                      {get_starters.map((wine) => (
+                        <MenuItem
+                          key={wine.id}
+                          {...wine}
+                          id={wine._id}
+                          title={wine.title}
+                          price={wine.price}
+                          tags={wine.tags}
+                          amount={wine.amount}
+                        />
+                      ))}
+                      {/* {/* </div>  */}
+                    </div>
+                  </Scrollbars>
+                </div>
+
+                <div
+                  className={
+                    toggleState === 2 ? "content  active-content" : "content"
+                  }
+                >
+                  <Scrollbars
+                    style={{
+                      width: "100%",
+                      height: "100vh",
+                    }}
+                  >
+                    <div className="salad-grid-override">
+                      {/* {/* <div className="app__specialMenu_menu_items">  */}
+
+                      {get_mainCourse.map((wine) => (
+                        <MenuItem
+                          key={wine.id}
+                          {...wine}
+                          id={wine._id}
+                          title={wine.title}
+                          price={wine.price}
+                          tags={wine.tags}
+                          amount={wine.amount}
+                        />
+                      ))}
+                      {/* {/* </div>  */}
+                    </div>
+                  </Scrollbars>
+                </div>
+
+                <div
+                  className={
+                    toggleState === 3 ? "content  active-content" : "content"
+                  }
+                >
+                  <Scrollbars
+                    style={{
+                      width: "100%",
+                      height: "100vh",
+                    }}
+                  >
+                    <div className="salad-grid-override">
+                      {/* {/* <div className="app__specialMenu_menu_items">  */}
+
+                      {get_starters.map((wine) => (
+                        <MenuItem
+                          key={wine.id}
+                          {...wine}
+                          id={wine._id}
+                          title={wine.title}
+                          price={wine.price}
+                          tags={wine.tags}
+                          amount={wine.amount}
+                        />
+                      ))}
+                      {/* {/* </div>  */}
+                    </div>
+                  </Scrollbars>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="Menu__item__container">
-          <div className="Menu_sub_container">
-            <div className="menu-tabs ">
-              <button
-                className={
-                  toggleState === 4
-                    ? "tabs active-tabs menu_font"
-                    : "tabs menu_font "
-                }
-                onClick={() => toggleTab(4)}
-              >
-                Drinks
-              </button>
-              <button
-                className={
-                  toggleState === 1
-                    ? "tabs active-tabs menu_font"
-                    : "tabs menu_font"
-                }
-                onClick={() => toggleTab(1)}
-              >
-                Starter
-              </button>
-              <button
-                className={
-                  toggleState === 2
-                    ? "tabs active-tabs menu_font"
-                    : "tabs menu_font"
-                }
-                onClick={() => toggleTab(2)}
-              >
-                Main Course
-              </button>
-              <button
-                className={
-                  toggleState === 3
-                    ? "tabs active-tabs menu_font"
-                    : "tabs menu_font"
-                }
-                onClick={() => toggleTab(3)}
-              >
-                Dessert
-              </button>
+        <div className="Menu__container__right">
+          <div className="Menu__cart__header">
+            <h1> Cart</h1>
+          </div>
+          <div className="menu-cart-tabs">
+            <div className="menu-cart-tabs-header">
+              <h5>{amount} Items</h5>
             </div>
-
-            <div className="content-tabs">
-              <div
-                className={
-                  toggleState === 4 ? "content  active-content" : "content "
-                }
-              >
-                {" "}
-                <Scrollbars
-                  style={{
-                    width: "100%",
-                    height: "100vh",
-                  }}
-                >
-                  <div className="salad-grid-override">
-                    {/* {/* <div className="app__specialMenu_menu_items">  */}
-
-                    {get_drinks.map((wine) => (
-                      <MenuItem
-                        key={wine.id}
-                        {...wine}
-                        id={wine._id}
-                        title={wine.title}
-                        price={wine.price}
-                        tags={wine.tags}
-                        amount={wine.amount}
-                      />
-                    ))}
-                    {/* {/* </div>  */}
-                  </div>
-                </Scrollbars>
-              </div>
-
-              <div
-                className={
-                  toggleState === 1 ? "content  active-content" : "content "
-                }
-              >
-                {" "}
-                <Scrollbars
-                  style={{
-                    width: "100%",
-                    height: "100vh",
-                  }}
-                >
-                  <div className="salad-grid-override">
-                    {/* {/* <div className="app__specialMenu_menu_items">  */}
-
-                    {get_starters.map((wine) => (
-                      <MenuItem
-                        key={wine.id}
-                        {...wine}
-                        id={wine._id}
-                        title={wine.title}
-                        price={wine.price}
-                        tags={wine.tags}
-                        amount={wine.amount}
-                      />
-                    ))}
-                    {/* {/* </div>  */}
-                  </div>
-                </Scrollbars>
-              </div>
-
-              <div
-                className={
-                  toggleState === 2 ? "content  active-content" : "content"
-                }
-              >
-                <Scrollbars
-                  style={{
-                    width: "100%",
-                    height: "100vh",
-                  }}
-                >
-                  <div className="salad-grid-override">
-                    {/* {/* <div className="app__specialMenu_menu_items">  */}
-
-                    {get_mainCourse.map((wine) => (
-                      <MenuItem
-                        key={wine.id}
-                        {...wine}
-                        id={wine._id}
-                        title={wine.title}
-                        price={wine.price}
-                        tags={wine.tags}
-                        amount={wine.amount}
-                      />
-                    ))}
-                    {/* {/* </div>  */}
-                  </div>
-                </Scrollbars>
-              </div>
-
-              <div
-                className={
-                  toggleState === 3 ? "content  active-content" : "content"
-                }
-              >
-                <Scrollbars
-                  style={{
-                    width: "100%",
-                    height: "100vh",
-                  }}
-                >
-                  <div className="salad-grid-override">
-                    {/* {/* <div className="app__specialMenu_menu_items">  */}
-
-                    {get_starters.map((wine) => (
-                      <MenuItem
-                        key={wine.id}
-                        {...wine}
-                        id={wine._id}
-                        title={wine.title}
-                        price={wine.price}
-                        tags={wine.tags}
-                        amount={wine.amount}
-                      />
-                    ))}
-                    {/* {/* </div>  */}
-                  </div>
-                </Scrollbars>
-              </div>
+            {cart.map((item) => {
+              return <CartItem key={item.id} {...item} />;
+            })}
+          </div>
+          <div className="cart-total-container">
+            {/* <hr /> */}
+            <div className="cart-total">
+              <h4>
+                total <span>${total}</span>
+              </h4>
             </div>
+            {/* <button className="btn clear-btn" onClick={clearCart}>
+              Clear Cart
+            </button> */}
+          </div>
+          <div className="button_checkout">
+            <AddressDrawer />
           </div>
         </div>
       </div>
