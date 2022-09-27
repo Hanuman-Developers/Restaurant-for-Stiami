@@ -481,6 +481,12 @@ hr {
   }
 }
 @media screen and (max-width: 769px) {
+  .Menu__main__container {
+    flex-direction: column;
+  }
+  .Menu__container__right {
+    margin: 1.5rem;
+  }
   .menu-tabs {
     width: 95%;
   }
