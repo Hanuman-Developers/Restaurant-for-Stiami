@@ -18,16 +18,16 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-const OrderItem = ({ _id, user, orderItems, totalPrice, isPaid }) => {
+const OrderItem = ({ order, productDetails }) => {
   const [orderStatus, setOrderStatus] = useState("");
   const [isDisabled, setDisabled] = useState(false);
 
-  const getOrderURL = `/orders/${_id}`;
-  const updateOrderURL = `/orders/${_id}/change`;
+  const getOrderURL = `/orders/${order._id}`;
+  const updateOrderURL = `/orders/${order._id}/change`;
 
   useEffect(async () => {
     const prod = {
-      _id: _id,
+      _id: order._id,
     };
     try {
       const response = await axios.post(getOrderURL, prod, {
@@ -35,11 +35,13 @@ const OrderItem = ({ _id, user, orderItems, totalPrice, isPaid }) => {
         withCredentials: true,
       });
       console.log(response);
-      if (response.data.orderStatus == "Shipped") {
+      if (response.data.delivery_status == "Shipped") {
         setOrderStatus("Shipped");
         setDisabled(true);
-      } else {
+      } else if (response.data.delivery_status == "Created") {
         setOrderStatus("Accepted");
+      } else {
+        setOrderStatus("Delivered");
       }
     } catch (error) {
       console.log(error);
@@ -50,7 +52,7 @@ const OrderItem = ({ _id, user, orderItems, totalPrice, isPaid }) => {
     console.log(e.target.value);
     if (e.target.value == "Shipped") {
       const prod = {
-        _id: _id,
+        _id: order._id,
         status: "Shipped",
       };
       try {
@@ -65,6 +67,23 @@ const OrderItem = ({ _id, user, orderItems, totalPrice, isPaid }) => {
       setDisabled(true);
       setOrderStatus("Shipped");
     }
+    if (e.target.value == "Delivered") {
+      const prod = {
+        _id: order._id,
+        status: "Delivered",
+      };
+      try {
+        const response = await axios.post(updateOrderURL, prod, {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: true,
+        });
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+      }
+      setDisabled(true);
+      setOrderStatus("Delivered");
+    }
   };
   const navigate = useNavigate();
 
@@ -72,12 +91,12 @@ const OrderItem = ({ _id, user, orderItems, totalPrice, isPaid }) => {
     <div className="order-card" style={{ animation: `0.17s` }}>
       <div className="order-container_one">
         <div className="order-card-id">
-          <h2>{user}</h2>
+          <h2>{order._id}</h2>
         </div>
         {/* <h2 className="order-card-name">{} </h2> */}
         <div className="food_cart_container">
           {/* <button onClick={EditProduct}>Edit</button> */}
-          <form className="orderForm">
+          {/* <form className="orderForm">
             <label className="drop">
               Order Status
               <select
@@ -98,7 +117,24 @@ const OrderItem = ({ _id, user, orderItems, totalPrice, isPaid }) => {
                 <option value="Shipped">Shipped</option>
               </select>
             </label>
-          </form>
+          </form> */}
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Status</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={orderStatus}
+              label="Order"
+              onChange={changeStatus}
+            >
+              <MenuItem disabled value="Accepted">
+                Accepted
+              </MenuItem>
+
+              <MenuItem value="Shipped">Shipped</MenuItem>
+              <MenuItem value="Delivered">Delivered</MenuItem>
+            </Select>
+          </FormControl>
         </div>
       </div>
       {/* <h2 className="order-card-name">{} </h2> */}
@@ -116,24 +152,24 @@ const OrderItem = ({ _id, user, orderItems, totalPrice, isPaid }) => {
           </ul> */}
 
           <ul>
-            {orderItems.map(({ name, amount }) => (
+            {productDetails.map(({ prodName, prodPrice }) => (
               <div className="order-scrollbar-items">
                 <div className="order-name-list">
-                  <li>{name}</li>
+                  <li>{prodName}</li>
                 </div>
                 <CloseOutlinedIcon
                   sx={{
                     size: "small",
                   }}
                 />
-                <p>{amount}</p>
+                <p>{prodPrice}</p>
               </div>
             ))}
           </ul>
           {/* </div> */}
         </div>
         <div className="order-card-price">
-          <p>${totalPrice}</p>
+          <p>${order.total}</p>
         </div>
       </div>
     </div>

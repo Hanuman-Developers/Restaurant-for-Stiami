@@ -23,6 +23,9 @@ export const cartReducer = (state, action) => {
     let tempCart = state.cart
       .map((cartItem) => {
         if (cartItem.id === action.payload) {
+          if (cartItem.amount == 0) {
+            return { ...cartItem, amount: cartItem.amount };
+          }
           return { ...cartItem, amount: cartItem.amount - 1 };
         }
         return cartItem;
@@ -76,6 +79,11 @@ export const cartReducer = (state, action) => {
           return { ...cartItem, amount: cartItem.amount + 1 };
         }
         if (action.payload.type === "dec") {
+          if (cartItem.amount == 0) {
+            console.log("amount");
+
+            return { ...cartItem, amount: cartItem.amount };
+          }
           return { ...cartItem, amount: cartItem.amount - 1 };
         }
       }

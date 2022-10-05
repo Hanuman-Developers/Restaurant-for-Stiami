@@ -54,7 +54,6 @@
 }
 .cart-total h4 {
   font-family: var(--font-alt);
-  border-top: 1px rgba(207, 210, 207, 0.944) solid;
   text-transform: capitalize;
   display: flex;
   font-weight: 500;

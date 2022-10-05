@@ -19,27 +19,39 @@ function AdminOrderDashboard() {
   const { cart, total, clearCart } = CartState();
 
   const [orders, setOrders] = useState("");
-  const [accepted, setAccepted] = useState("");
+  const [accepted, setAccepted] = useState({});
   const [shipped, setShipped] = useState("");
   const [delivered, setDelivered] = useState("");
 
   const { auth } = CartState();
-  const url = "/orders";
+  const url = "/orders/products";
+
   useEffect(async () => {
+    // Loading Order data
     const response = await axios.get(url, {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     });
+
     const get_accepted = response.data.filter(function (item) {
-      return item.orderStatus == "Accepted";
+      console.log(item.order.delivery_status);
+      return item.order.delivery_status === "Created";
     });
+    console.log(get_accepted);
+
     setAccepted(get_accepted);
 
     const get_shipped = response.data.filter(function (item) {
-      return item.orderStatus == "Shipped";
+      return item.order.delivery_status == "Shipped";
     });
     setShipped(get_shipped);
-    console.log(response);
+
+    const get_delivered = response.data.filter(function (item) {
+      return item.order.delivery_status == "Delivered";
+    });
+    setDelivered(get_delivered);
+    // setShipped(get_shipped);
+
     setOrders(response.data);
   }, []);
   const [toggleState, setToggleState] = useState(1);
@@ -54,23 +66,6 @@ function AdminOrderDashboard() {
 
   return (
     <>
-      {/* <form className="gForm">
-        <label className="drop">
-          Category
-          <select
-            className="dropdown"
-            name="status"
-            value={orders}
-            onChange={changedata}
-            required
-          >
-            <option className="selected">Order Status </option>
-            <option value="Accepted">Accepted</option>
-            <option value="Shipped">Shipped</option>
-          </select>
-        </label>
-      </form> */}
-
       <VerticalNav />
       <AdminNavbar heading="Orders" />
       {/* <div className="order-card" style={{ animation: `0.17s` }}>
@@ -173,7 +168,7 @@ function AdminOrderDashboard() {
                       {accepted.length > 0 &&
                         accepted.map((wine) => (
                           <OrderItem
-                            key={wine.user}
+                            // key={wine.user}
                             {...wine}
                             // id={wine.id}
                             // title={wine.title}
@@ -205,7 +200,7 @@ function AdminOrderDashboard() {
                       {shipped.length > 0 &&
                         shipped.map((wine) => (
                           <OrderItem
-                            key={wine.user}
+                            // key={wine.user}
                             {...wine}
                             // id={wine.id}
                             // title={wine.title}
@@ -225,17 +220,29 @@ function AdminOrderDashboard() {
                     toggleState === 3 ? "content  active-content" : "content"
                   }
                 >
-                  <h2>Content 3</h2>
-                  <hr />
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Eos sed nostrum rerum laudantium totam unde adipisci
-                    incidunt modi alias! Accusamus in quia odit aspernatur
-                    provident et ad vel distinctio recusandae totam quidem
-                    repudiandae omnis veritatis nostrum laboriosam architecto
-                    optio rem, dignissimos voluptatum beatae aperiam voluptatem
-                    atque. Beatae rerum dolores sunt.
-                  </p>
+                  <div className="product-grid-override">
+                    <Scrollbars
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                      }}
+                    >
+                      {delivered.length > 0 &&
+                        delivered.map((wine) => (
+                          <OrderItem
+                            key={wine.user}
+                            {...wine}
+                            // id={wine.id}
+                            // title={wine.title}
+                            // price={wine.price}
+                            // tags={wine.tags}
+                            // amount={wine.amount}
+                          />
+                        ))}
+                    </Scrollbars>
+
+                    {/* <h1>Heor</h1> */}
+                  </div>
                 </div>
               </div>
             </div>
