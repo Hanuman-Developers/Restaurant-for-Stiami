@@ -8,6 +8,10 @@ import Input from "../Login/Input";
 import AdminNavbar from "../../components/AdminNavbar/AdminNavbar.js";
 import styled from "styled-components/macro";
 import login_background from "../../assets/login_background.jpg";
+// import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 const initialState = {
   name: "",
@@ -30,11 +34,12 @@ function AddFoodItem() {
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [ip, setIp] = useState("");
 
   const toggling = () => setIsOpen(!isOpen);
 
   const [state, dispatch] = useReducer(reducer, initialState);
-  const ADD_URL = "products/create";
+  const ADD_URL = "ip/";
 
   const onOptionClicked = (value) => () => {
     const action = {
@@ -48,56 +53,78 @@ function AddFoodItem() {
   };
 
   function onChange(e) {
-    console.log(e.target.name);
-    const action = {
-      input: e.target.name,
-      value: e.target.value,
-    };
-
-    dispatch(action);
+    console.log(e.target.value);
+    setIp(e.target.value);
   }
 
   async function onSubmit(e) {
     e.preventDefault();
+    console.log(e.target);
 
-    if (selectedOption == null) {
-      console.log("yes");
-      const action = {
-        input: "category",
-        value: "Starters",
-      };
-      dispatch(action);
-    }
+    const prod = {
+      address: ip,
+    };
+    console.log(prod);
 
-    console.log(state);
-
-    const response = await axios.post(ADD_URL, state, {
+    const response = await axios.post(ADD_URL, prod, {
       headers: { "Content-Type": "application/json" },
       withCredentials: true,
     });
 
     console.log(response);
+    setOpen(true);
   }
+
+  /* ----------------Notification--------------------- */
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleClose}>
+        UNDO
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
 
   return (
     <>
-      <VerticalNav></VerticalNav>
-      <AdminNavbar heading="Create Product" />
+      {/* <VerticalNav></VerticalNav>
+      <AdminNavbar heading="Create Product" /> */}
       <>
         <div className="full_bg">
           <div className="board">
             <AddItemContainer>
               <FormContainer>
-                <Header>Add New Item</Header>
+                <Header>Enter Ip Address</Header>
                 {/* <form onSubmit={onSubmit}> */}
                 <InputContainer>
                   <Input
-                    name="name"
-                    type="name"
-                    placeholder="FoodItemName"
+                    name="ip"
+                    type="ip"
+                    placeholder="Ip Address"
                     onChange={onChange}
                   />
-                  <Input
+                  {/* <Input
                     name="price"
                     type="number"
                     placeholder="Price"
@@ -108,9 +135,9 @@ function AddFoodItem() {
                     name="description"
                     placeholder="description"
                     onChange={onChange}
-                  />
+                  /> */}
                 </InputContainer>
-                <CatergoryContainer>
+                {/* <CatergoryContainer>
                   <DropDownContainer>
                     <DropDownHeader onClick={toggling}>
                       {selectedOption || "Starters"}
@@ -131,10 +158,17 @@ function AddFoodItem() {
                     )}
                   </DropDownContainer>
                   <TextArea> Category</TextArea>
-                </CatergoryContainer>
+                </CatergoryContainer> */}
                 <ButtonContainer onClick={onSubmit}>
                   <Button content="Create" />
                 </ButtonContainer>
+                <Snackbar
+                  open={open}
+                  autoHideDuration={6000}
+                  onClose={handleClose}
+                  message="Successfully saved"
+                  action={action}
+                />
                 {/* </form> */}
               </FormContainer>
             </AddItemContainer>

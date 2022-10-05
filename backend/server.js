@@ -20,6 +20,7 @@ import verifyJWT from "./middlewares/verifyjwt.js";
 import productRoutes from "./routes/ProductRoutes.js";
 import orderRoutes from "./routes/orderRoute.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
+import ipRoutes from "./routes/ipRoute.js";
 import path from "path";
 import "express-async-errors";
 
@@ -56,6 +57,7 @@ router.use("/auth", authRoutes);
 router.use("/refresh", refreshTokenRoutes);
 router.use("/tables", tablesRoutes);
 router.use("/bookings", bookingRoutes);
+router.use("/ip", ipRoutes);
 
 // Add cookie parser for this middleware
 // app.use(veJW
